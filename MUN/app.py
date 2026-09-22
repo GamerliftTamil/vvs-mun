@@ -2,7 +2,7 @@ import os
 import json
 from datetime import datetime
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 
 import gspread
@@ -10,19 +10,15 @@ from google.oauth2.service_account import Credentials
 
 
 app = Flask(__name__)
-
-# Allow your Netlify website to communicate with this backend
 CORS(app)
 
 
-# ============================================================
+# =========================================================
 # GOOGLE SHEETS CONFIGURATION
-# ============================================================
+# =========================================================
 
 SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID")
-
 GOOGLE_CREDENTIALS = os.environ.get("GOOGLE_CREDENTIALS")
-
 
 if not SPREADSHEET_ID:
     raise RuntimeError("SPREADSHEET_ID environment variable is missing")
@@ -31,7 +27,6 @@ if not GOOGLE_CREDENTIALS:
     raise RuntimeError("GOOGLE_CREDENTIALS environment variable is missing")
 
 
-# Google API permissions
 SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets"
 ]
@@ -45,32 +40,38 @@ credentials = Credentials.from_service_account_info(
     scopes=SCOPES
 )
 
-
-# Connect to Google Sheets
 client = gspread.authorize(credentials)
 
 spreadsheet = client.open_by_key(SPREADSHEET_ID)
 
-# First sheet in the spreadsheet
 worksheet = spreadsheet.sheet1
 
 
-# ============================================================
-# HOME / HEALTH CHECK
-# ============================================================
+# =========================================================
+# WEBSITE
+# =========================================================
 
-@app.route("/", methods=["GET"])
+@app.route("/")
 def home():
+    return render_template("index.html")
+
+
+# =========================================================
+# HEALTH CHECK
+# =========================================================
+
+@app.route("/health")
+def health():
     return jsonify({
-        "service": "VVS-MUN Registration Backend",
+        "service": "VVS-MUN Registration",
         "status": "online",
         "google_sheets": "connected"
     })
 
 
-# ============================================================
-# REGISTER DELEGATE
-# ============================================================
+# =========================================================
+# REGISTRATION API
+# =========================================================
 
 @app.route("/register", methods=["POST"])
 def register():
@@ -86,20 +87,31 @@ def register():
             }), 400
 
 
-        # ----------------------------------------------------
-        # Get submitted fields
-        # ----------------------------------------------------
+        # Get values
+        name = str(
+            data.get("name", "")
+        ).strip()
 
-        name = str(data.get("name", "")).strip()
-        classsec = str(data.get("classsec", "")).strip()
-        committee = str(data.get("committee", "")).strip()
-        country = str(data.get("country", "")).strip()
-        phone = str(data.get("phone", "")).strip()
+        classsec = str(
+            data.get("classsec", "")
+        ).strip()
+
+        committee = str(
+            data.get("committee", "")
+        ).strip()
+
+        country = str(
+            data.get("country", "")
+        ).strip()
+
+        phone = str(
+            data.get("phone", "")
+        ).strip()
 
 
-        # ----------------------------------------------------
-        # Validate required fields
-        # ----------------------------------------------------
+        # =================================================
+        # VALIDATION
+        # =================================================
 
         if not name:
             return jsonify({
@@ -107,11 +119,13 @@ def register():
                 "message": "Full name is required."
             }), 400
 
+
         if not classsec:
             return jsonify({
                 "success": False,
                 "message": "Class and section are required."
             }), 400
+
 
         if not committee:
             return jsonify({
@@ -119,11 +133,13 @@ def register():
                 "message": "Committee is required."
             }), 400
 
+
         if not country:
             return jsonify({
                 "success": False,
                 "message": "Country is required."
             }), 400
+
 
         if not phone:
             return jsonify({
@@ -132,18 +148,18 @@ def register():
             }), 400
 
 
-        # ----------------------------------------------------
-        # Current timestamp
-        # ----------------------------------------------------
+        # =================================================
+        # TIMESTAMP
+        # =================================================
 
         timestamp = datetime.now().strftime(
             "%d/%m/%Y %I:%M:%S %p"
         )
 
 
-        # ----------------------------------------------------
-        # Add registration to Google Sheet
-        # ----------------------------------------------------
+        # =================================================
+        # SAVE TO GOOGLE SHEETS
+        # =================================================
 
         worksheet.append_row(
             [
@@ -158,9 +174,9 @@ def register():
         )
 
 
-        # ----------------------------------------------------
-        # Success
-        # ----------------------------------------------------
+        # =================================================
+        # SUCCESS
+        # =================================================
 
         return jsonify({
             "success": True,
@@ -178,13 +194,15 @@ def register():
         }), 500
 
 
-# ============================================================
-# START SERVER
-# ============================================================
+# =========================================================
+# LOCAL DEVELOPMENT
+# =========================================================
 
 if __name__ == "__main__":
 
-    port = int(os.environ.get("PORT", 5000))
+    port = int(
+        os.environ.get("PORT", 5000)
+    )
 
     app.run(
         host="0.0.0.0",

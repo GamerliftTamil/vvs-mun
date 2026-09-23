@@ -2,6 +2,7 @@ import os
 import json
 import secrets
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
@@ -10,48 +11,29 @@ import gspread
 from google.oauth2.service_account import Credentials
 
 
-# ============================================================
-# FLASK APP
-# ============================================================
-
 app = Flask(__name__)
-
 CORS(app)
-
-
-# ============================================================
-# GOOGLE SHEETS CONFIGURATION
-# ============================================================
 
 SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID")
 GOOGLE_CREDENTIALS = os.environ.get("GOOGLE_CREDENTIALS")
 
-
 if not SPREADSHEET_ID:
-    raise RuntimeError(
-        "SPREADSHEET_ID environment variable is missing"
-    )
+    raise RuntimeError("SPREADSHEET_ID environment variable is missing")
 
 if not GOOGLE_CREDENTIALS:
-    raise RuntimeError(
-        "GOOGLE_CREDENTIALS environment variable is missing"
-    )
+    raise RuntimeError("GOOGLE_CREDENTIALS environment variable is missing")
 
+
+# ---------------------------------------------------------
+# GOOGLE SHEETS
+# ---------------------------------------------------------
 
 SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets"
 ]
 
-
-# ============================================================
-# GOOGLE AUTHENTICATION
-# ============================================================
-
 try:
-
-    credentials_info = json.loads(
-        GOOGLE_CREDENTIALS
-    )
+    credentials_info = json.loads(GOOGLE_CREDENTIALS)
 
     credentials = Credentials.from_service_account_info(
         credentials_info,
@@ -59,68 +41,62 @@ try:
     )
 
 except Exception as e:
-
     raise RuntimeError(
         f"Google credentials could not be loaded: {e}"
     )
 
 
-# ============================================================
-# GOOGLE SHEETS CONNECTION
-# ============================================================
-
 try:
+    client = gspread.authorize(credentials)
 
-    client = gspread.authorize(
-        credentials
-    )
-
-    spreadsheet = client.open_by_key(
-        SPREADSHEET_ID
-    )
+    spreadsheet = client.open_by_key(SPREADSHEET_ID)
 
     worksheet = spreadsheet.sheet1
 
 except Exception as e:
-
     raise RuntimeError(
         f"Could not connect to Google Sheets: {e}"
     )
 
 
-# ============================================================
-# WEBSITE
-# ============================================================
+# ---------------------------------------------------------
+# ROUTES
+# ---------------------------------------------------------
 
 @app.route("/", methods=["GET"])
 def home():
+    return render_template("index.html")
+
+
+@app.route("/payment", methods=["GET"])
+def payment():
+    registration_id = request.args.get("id", "").strip()
+
+    if not registration_id:
+        return render_template(
+            "payment.html",
+            registration_id="Not available"
+        )
 
     return render_template(
-        "index.html"
+        "payment.html",
+        registration_id=registration_id
     )
 
-
-# ============================================================
-# HEALTH CHECK
-# ============================================================
 
 @app.route("/health", methods=["GET"])
 def health():
 
     return jsonify({
-
         "service": "VVS-MUN Registration",
-
         "status": "online",
-
         "google_sheets": "connected"
-
     })
 
 
-# ============================================================
-# GENERATE REGISTRATION ID
-# ============================================================
+# ---------------------------------------------------------
+# REGISTRATION ID
+# ---------------------------------------------------------
 
 def generate_registration_id():
 
@@ -129,36 +105,27 @@ def generate_registration_id():
     return f"VVS26-{random_part}"
 
 
-# ============================================================
-# REGISTER DELEGATE
-# ============================================================
+# ---------------------------------------------------------
+# REGISTRATION
+# ---------------------------------------------------------
 
 @app.route("/register", methods=["POST"])
 def register():
 
     try:
 
-        # ----------------------------------------------------
-        # RECEIVE JSON DATA
-        # ----------------------------------------------------
-
         data = request.get_json()
 
         if not data:
-
             return jsonify({
-
                 "success": False,
-
-                "message":
-                    "No registration data received."
-
+                "message": "No registration data received."
             }), 400
 
 
-        # ----------------------------------------------------
-        # GET ALL FORM FIELDS
-        # ----------------------------------------------------
+        # -------------------------------------------------
+        # GET FORM DATA
+        # -------------------------------------------------
 
         name = str(
             data.get("name", "")
@@ -217,283 +184,150 @@ def register():
         ).strip()
 
 
-        # ----------------------------------------------------
-        # VALIDATE REQUIRED FIELDS
-        # ----------------------------------------------------
-
-        if not name:
-
-            return jsonify({
-
-                "success": False,
-
-                "message":
-                    "Full name is required."
-
-            }), 400
-
-
-        if not classsec:
-
-            return jsonify({
-
-                "success": False,
-
-                "message":
-                    "Class and section are required."
-
-            }), 400
-
-
-        if not email:
-
-            return jsonify({
-
-                "success": False,
-
-                "message":
-                    "Email address is required."
-
-            }), 400
-
-
-        if not phone:
-
-            return jsonify({
-
-                "success": False,
-
-                "message":
-                    "Contact number is required."
-
-            }), 400
-
-
-        if not parent_name:
-
-            return jsonify({
-
-                "success": False,
-
-                "message":
-                    "Parent/Guardian name is required."
-
-            }), 400
-
-
-        if not parent_phone:
-
-            return jsonify({
-
-                "success": False,
-
-                "message":
-                    "Parent/Guardian contact is required."
-
-            }), 400
-
-
-        if not committee:
-
-            return jsonify({
-
-                "success": False,
-
-                "message":
-                    "Committee preference is required."
-
-            }), 400
-
-
-        if not participated:
-
-            return jsonify({
-
-                "success": False,
-
-                "message":
-                    "Please select whether you have participated before."
-
-            }), 400
-
-
-        if not mun_count:
-
-            return jsonify({
-
-                "success": False,
-
-                "message":
-                    "Please select the number of MUNs attended."
-
-            }), 400
-
-
-        if not awards:
-
-            return jsonify({
-
-                "success": False,
-
-                "message":
-                    "Please select whether you have won an MUN award."
-
-            }), 400
-
-
-        if not why_participate:
-
-            return jsonify({
-
-                "success": False,
-
-                "message":
-                    "Please explain why you want to participate."
-
-            }), 400
-
-
-        if not strengths:
-
-            return jsonify({
-
-                "success": False,
-
-                "message":
-                    "Please select at least one strength."
-
-            }), 400
-
-
-        # ----------------------------------------------------
-        # BASIC EMAIL VALIDATION
-        # ----------------------------------------------------
+        # -------------------------------------------------
+        # REQUIRED FIELD VALIDATION
+        # -------------------------------------------------
+
+        required_fields = {
+            "Name": name,
+            "Class & Section": classsec,
+            "Email": email,
+            "Phone": phone,
+            "Parent/Guardian Name": parent_name,
+            "Parent/Guardian Phone": parent_phone,
+            "Committee": committee,
+            "Participated Before": participated,
+            "MUN Experience": mun_count,
+            "Awards Before": awards,
+            "Why Participate": why_participate,
+            "Strengths": strengths
+        }
+
+        for field, value in required_fields.items():
+
+            if not value:
+
+                return jsonify({
+                    "success": False,
+                    "message": f"{field} is required."
+                }), 400
+
+
+        # -------------------------------------------------
+        # EMAIL CHECK
+        # -------------------------------------------------
 
         if "@" not in email or "." not in email:
 
             return jsonify({
-
                 "success": False,
-
-                "message":
-                    "Please enter a valid email address."
-
+                "message": "Please enter a valid email address."
             }), 400
 
 
-        # ----------------------------------------------------
-        # TIMESTAMP
-        # ----------------------------------------------------
+        # -------------------------------------------------
+        # WHY PARTICIPATE LENGTH
+        # -------------------------------------------------
 
-        timestamp = datetime.now().strftime(
+        if len(why_participate) > 600:
+
+            return jsonify({
+                "success": False,
+                "message": "Why Participate must be 600 characters or less."
+            }), 400
+
+
+        # -------------------------------------------------
+        # GENERATE REGISTRATION DETAILS
+        # -------------------------------------------------
+
+        timestamp = datetime.now(
+            ZoneInfo("Asia/Kolkata")
+        ).strftime(
             "%d/%m/%Y %I:%M:%S %p"
         )
-
-
-        # ----------------------------------------------------
-        # REGISTRATION ID
-        # ----------------------------------------------------
 
         registration_id = generate_registration_id()
 
 
-        # ----------------------------------------------------
+        # -------------------------------------------------
         # PAYMENT
-        # ----------------------------------------------------
-        #
-        # Payment has intentionally been left out.
-        #
-        # Column C will contain:
-        #
-        # NOT REQUIRED
-        #
-        # No Razorpay information is collected.
-        #
-        # ----------------------------------------------------
+        # -------------------------------------------------
 
-        payment_status = "NOT REQUIRED"
+        amount_paid = ""
+
+        payment_status = "PENDING"
 
 
-        # ----------------------------------------------------
-        # BUILD A-Q ROW
-        # ----------------------------------------------------
+        # -------------------------------------------------
+        # GOOGLE SHEETS ROW
         #
-        # A  Timestamp
-        # B  Registration ID
-        # C  Payment Status
-        # D  Name
-        # E  Class & Section
-        # F  Email
-        # G  Phone
-        # H  Parent/Guardian Name
-        # I  Parent/Guardian Phone
-        # J  Committee
-        # K  Country Representing
-        # L  Participated Before
-        # M  MUN Experience
-        # N  Awards Before
-        # O  Previous Awards
-        # P  Why Participate
-        # Q  Strengths
-        #
-        # ----------------------------------------------------
+        # A = Timestamp
+        # B = Registration ID
+        # C = Name
+        # D = Class & Section
+        # E = Email
+        # F = Phone
+        # G = Parent/Guardian Name
+        # H = Parent/Guardian Phone
+        # I = Committee
+        # J = Country Representing
+        # K = Participated Before
+        # L = MUN Experience
+        # M = Awards Before
+        # N = Previous Awards
+        # O = Why Participate
+        # P = Strengths
+        # Q = Amount Paid
+        # R = Payment Status
+        # -------------------------------------------------
 
         row = [
 
-            timestamp,            # A
-            registration_id,      # B
-            payment_status,       # C
-            name,                 # D
-            classsec,             # E
-            email,                # F
-            phone,                # G
-            parent_name,          # H
-            parent_phone,         # I
-            committee,            # J
-            country,              # K
-            participated,         # L
-            mun_count,            # M
-            awards,               # N
-            previous_awards,      # O
-            why_participate,      # P
-            strengths             # Q
+            timestamp,
+            registration_id,
+            name,
+            classsec,
+            email,
+            phone,
+            parent_name,
+            parent_phone,
+            committee,
+            country,
+            participated,
+            mun_count,
+            awards,
+            previous_awards,
+            why_participate,
+            strengths,
+            amount_paid,
+            payment_status
 
         ]
 
 
-        # ----------------------------------------------------
-        # SAVE TO GOOGLE SHEETS
-        # ----------------------------------------------------
-
         worksheet.append_row(
-
             row,
-
             value_input_option="USER_ENTERED"
-
         )
 
 
-        # ----------------------------------------------------
-        # SUCCESS RESPONSE
-        # ----------------------------------------------------
+        # -------------------------------------------------
+        # SUCCESS
+        # -------------------------------------------------
 
         return jsonify({
 
             "success": True,
 
-            "message":
-                "Registration successfully recorded.",
+            "message": "Registration successfully recorded.",
 
-            "registration_id":
-                registration_id
+            "registration_id": registration_id,
+
+            "payment_url": f"/payment?id={registration_id}"
 
         }), 200
 
-
-    # ========================================================
-    # ERROR HANDLING
-    # ========================================================
 
     except Exception as e:
 
@@ -512,9 +346,9 @@ def register():
         }), 500
 
 
-# ============================================================
-# START SERVER
-# ============================================================
+# ---------------------------------------------------------
+# LOCAL DEVELOPMENT
+# ---------------------------------------------------------
 
 if __name__ == "__main__":
 
@@ -526,9 +360,6 @@ if __name__ == "__main__":
     )
 
     app.run(
-
         host="0.0.0.0",
-
         port=port
-
     )

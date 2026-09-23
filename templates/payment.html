@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>VVS-MUN 2026–27 | Payment</title>
+
+<style>
+
+:root{
+
+    --burgundy:#3E0804;
+    --red:#740F06;
+    --bronze:#C58A50;
+    --wine:#531210;
+    --gold:#E0B66A;
+
+    --cream:#F8F3EA;
+    --white:#FFFFFF;
+
+    --text:#F8F3EA;
+    --muted:#D8C9B6;
+
+}
+
+
+*{
+
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+
+}
+
+
+body{
+
+    min-height:100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #68150E 0%,
+            #3E0804 38%,
+            #170302 100%
+        );
+
+    color:var(--text);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:30px 18px;
+
+}
+
+
+.payment-page{
+
+    width:100%;
+
+    max-width:760px;
+
+}
+
+
+.brand{
+
+    text-align:center;
+
+    margin-bottom:28px;
+
+}
+
+
+.brand-small{
+
+    font-size:12px;
+
+    letter-spacing:5px;
+
+    color:var(--bronze);
+
+    margin-bottom:8px;
+
+}
+
+
+.brand h1{
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:clamp(
+        32px,
+        7vw,
+        58px
+    );
+
+    letter-spacing:3px;
+
+}
+
+
+.brand p{
+
+    margin-top:8px;
+
+    color:var(--muted);
+
+    font-size:14px;
+
+    letter-spacing:1px;
+
+}
+
+
+.payment-card{
+
+    background:
+        rgba(255,255,255,0.075);
+
+    border:
+        1px solid
+        rgba(224,182,106,0.35);
+
+    border-radius:24px;
+
+    padding:
+        35px
+        30px
+        32px;
+
+    backdrop-filter:blur(16px);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,0.35);
+
+    text-align:center;
+
+}
+
+
+.payment-title{
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:30px;
+
+    margin-bottom:10px;
+
+}
+
+
+.payment-subtitle{
+
+    color:var(--muted);
+
+    line-height:1.6;
+
+    margin-bottom:25px;
+
+}
+
+
+.registration-box{
+
+    background:
+        rgba(0,0,0,0.24);
+
+    border:
+        1px solid
+        rgba(197,138,80,0.45);
+
+    border-radius:15px;
+
+    padding:18px;
+
+    margin-bottom:26px;
+
+}
+
+
+.registration-label{
+
+    display:block;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    color:var(--bronze);
+
+    margin-bottom:8px;
+
+}
+
+
+.registration-id{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    color:var(--gold);
+
+    word-break:break-word;
+
+}
+
+
+.qr-wrapper{
+
+    background:#fff;
+
+    width:min(
+        320px,
+        80vw
+    );
+
+    aspect-ratio:1;
+
+    margin:
+        0 auto 22px;
+
+    padding:16px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.qr-wrapper img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+}
+
+
+.amount{
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:36px;
+
+    font-weight:700;
+
+    color:var(--gold);
+
+    margin-bottom:8px;
+
+}
+
+
+.amount-label{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-bottom:28px;
+
+}
+
+
+.instructions{
+
+    text-align:left;
+
+    background:
+        rgba(0,0,0,0.18);
+
+    border-radius:17px;
+
+    padding:22px;
+
+    margin-bottom:22px;
+
+}
+
+
+.instructions h3{
+
+    color:var(--gold);
+
+    font-size:16px;
+
+    margin-bottom:14px;
+
+}
+
+
+.instructions ol{
+
+    padding-left:21px;
+
+}
+
+
+.instructions li{
+
+    color:var(--muted);
+
+    line-height:1.65;
+
+    margin-bottom:10px;
+
+}
+
+
+.instructions strong{
+
+    color:var(--cream);
+
+}
+
+
+.warning{
+
+    background:
+        rgba(116,15,6,0.38);
+
+    border:
+        1px solid
+        rgba(224,182,106,0.25);
+
+    border-radius:14px;
+
+    padding:16px;
+
+    color:#F2DCC5;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    text-align:left;
+
+    margin-bottom:24px;
+
+}
+
+
+.complete-btn{
+
+    display:block;
+
+    width:100%;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:16px;
+
+    background:#239447;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+
+}
+
+
+.complete-btn:hover{
+
+    background:#2cad55;
+
+    transform:translateY(-2px);
+
+}
+
+
+.back-link{
+
+    display:block;
+
+    margin-top:18px;
+
+    color:var(--bronze);
+
+    text-decoration:none;
+
+    font-size:13px;
+
+}
+
+
+.back-link:hover{
+
+    color:var(--gold);
+
+}
+
+
+.footer{
+
+    text-align:center;
+
+    margin-top:22px;
+
+    color:
+        rgba(248,243,234,0.5);
+
+    font-size:11px;
+
+}
+
+
+@media(max-width:600px){
+
+    body{
+
+        padding:
+            20px
+            12px;
+
+    }
+
+
+    .payment-card{
+
+        padding:
+            27px
+            18px;
+
+    }
+
+
+    .payment-title{
+
+        font-size:25px;
+
+    }
+
+
+    .registration-id{
+
+        font-size:20px;
+
+    }
+
+
+    .amount{
+
+        font-size:32px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<main class="payment-page">
+
+
+    <div class="brand">
+
+        <div class="brand-small">
+            VVS · MUN
+        </div>
+
+        <h1>
+            VVS-MUN 2026–27
+        </h1>
+
+        <p>
+            Registration Payment
+        </p>
+
+    </div>
+
+
+    <section class="payment-card">
+
+
+        <h2 class="payment-title">
+            Complete Your Registration
+        </h2>
+
+
+        <p class="payment-subtitle">
+
+            Your registration details have been
+            successfully recorded.
+
+            Please complete the registration
+            payment using the QR code below.
+
+        </p>
+
+
+        <div class="registration-box">
+
+            <span class="registration-label">
+                Your Registration ID
+            </span>
+
+            <div class="registration-id">
+                {{ registration_id }}
+            </div>
+
+        </div>
+
+
+        <div class="qr-wrapper">
+
+            <img
+                src="{{ url_for('static', filename='QR.png') }}"
+                alt="VVS-MUN Payment QR Code"
+            >
+
+        </div>
+
+
+        <div class="amount">
+            ₹500
+        </div>
+
+        <div class="amount-label">
+            VVS-MUN 2026–27 Registration Fee
+        </div>
+
+
+        <div class="instructions">
+
+            <h3>
+                Payment Instructions
+            </h3>
+
+            <ol>
+
+                <li>
+                    Open your preferred UPI payment app
+                    and scan the QR code above.
+                </li>
+
+                <li>
+                    Pay the registration fee of
+                    <strong>₹500</strong>.
+                </li>
+
+                <li>
+                    In the payment message/note,
+                    enter your
+                    <strong>Registration ID</strong>:
+                    <strong>{{ registration_id }}</strong>
+                </li>
+
+                <li>
+                    Complete the payment and keep the
+                    payment confirmation for your records.
+                </li>
+
+            </ol>
+
+        </div>
+
+
+        <div class="warning">
+
+            <strong>Important:</strong>
+
+            Please make sure your Registration ID
+            is entered correctly in the payment
+            message/note. This helps the management
+            match your payment with your registration.
+
+        </div>
+
+
+        <a
+            href="/"
+            class="complete-btn"
+        >
+            I HAVE COMPLETED PAYMENT
+        </a>
+
+
+        <a
+            href="/"
+            class="back-link"
+        >
+            ← Return to registration page
+        </a>
+
+
+    </section>
+
+
+    <div class="footer">
+
+        VVS International Model United Nations · 2026–27
+
+    </div>
+
+
+</main>
+
+</body>
+
+</html>

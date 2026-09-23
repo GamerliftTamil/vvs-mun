@@ -1,15 +1,31 @@
 :root{
-  --navy:#07111f;
-  --navy2:#0c1b2e;
+  /* =========================================================
+     VVS-MUN COLOR SYSTEM
+  ========================================================= */
 
-  --gold:#c9a45c;
-  --gold2:#e6c982;
+  --color-1:#3E0804;   /* Deep Burgundy */
+  --color-2:#740F06;   /* Rich Red */
+  --color-3:#C58A50;   /* Warm Bronze */
+  --color-4:#531210;   /* Dark Wine */
+  --color-5:#E2B45C;   /* Antique Gold */
 
-  --paper:#f5f2eb;
-  --ink:#17202b;
-  --muted:#697383;
-  --line:#d9d5cb;
+  --paper:#F7F1E7;
+  --paper-dark:#EDE2D2;
+
+  --ink:#241311;
+  --muted:#75645F;
+
+  --line:#D8C8B6;
+  --hero-text:#FFF9EF;
+--hero-muted:#F1E3D8;
+--section-text:#2A1714;
+  --white:#FFFDF8;
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
   box-sizing:border-box;
@@ -23,6 +39,7 @@ body{
   margin:0;
 
   background:var(--paper);
+
   color:var(--ink);
 
   font-family:
@@ -42,6 +59,47 @@ a{
 
 
 /* =========================================================
+   GOLD PAINT TEXTURE
+   =========================================================
+   Used on important gold elements.
+   It creates an irregular painted/brushed appearance.
+========================================================= */
+
+.gold-painted{
+  background:
+    radial-gradient(
+      ellipse at 20% 30%,
+      rgba(255,255,255,.22),
+      transparent 25%
+    ),
+    radial-gradient(
+      ellipse at 70% 60%,
+      rgba(255,255,255,.12),
+      transparent 30%
+    ),
+    repeating-linear-gradient(
+      102deg,
+      rgba(255,255,255,.08) 0px,
+      rgba(255,255,255,.08) 2px,
+      transparent 2px,
+      transparent 7px
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-3),
+      var(--color-5),
+      var(--color-3)
+    );
+
+  background-size:
+    180px 120px,
+    240px 160px,
+    14px 14px,
+    100% 100%;
+}
+
+
+/* =========================================================
    HERO
 ========================================================= */
 
@@ -50,21 +108,31 @@ a{
 
   background:
     radial-gradient(
-      circle at 85% 20%,
-      rgba(201,164,92,.18),
-      transparent 28%
+      circle at 82% 18%,
+      rgba(226,180,92,.20),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 15% 85%,
+      rgba(116,15,6,.35),
+      transparent 35%
     ),
     linear-gradient(
       135deg,
-      var(--navy),
-      var(--navy2)
+      var(--color-1),
+      var(--color-4) 55%,
+      var(--color-2)
     );
 
   color:#fff;
 
   position:relative;
+
   overflow:hidden;
 }
+
+
+/* Large decorative circles */
 
 .hero:before{
   content:"";
@@ -74,12 +142,16 @@ a{
   width:520px;
   height:520px;
 
-  border:1px solid rgba(201,164,92,.2);
+  border:1px solid rgba(226,180,92,.24);
 
   border-radius:50%;
 
   right:-180px;
   top:-150px;
+
+  box-shadow:
+    0 0 0 70px rgba(226,180,92,.025),
+    0 0 0 140px rgba(226,180,92,.018);
 }
 
 .hero:after{
@@ -90,12 +162,45 @@ a{
   width:700px;
   height:700px;
 
-  border:1px solid rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.06);
 
   border-radius:50%;
 
   right:-270px;
   top:-240px;
+}
+
+
+/* Subtle grain */
+
+.hero{
+  background-image:
+    radial-gradient(
+      rgba(255,255,255,.035) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(226,180,92,.20),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 15% 85%,
+      rgba(116,15,6,.35),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-1),
+      var(--color-4) 55%,
+      var(--color-2)
+    );
+
+  background-size:
+    9px 9px,
+    auto,
+    auto,
+    auto;
 }
 
 
@@ -109,6 +214,7 @@ a{
   display:flex;
 
   align-items:center;
+
   justify-content:space-between;
 
   max-width:1180px;
@@ -118,6 +224,7 @@ a{
   padding:0 28px;
 
   position:relative;
+
   z-index:2;
 }
 
@@ -127,17 +234,20 @@ a{
   font-size:22px;
 
   letter-spacing:.12em;
+
+  color:#fff;
 }
 
 .nav-links{
   display:flex;
+
   align-items:center;
 }
 
 .nav a{
   font-size:14px;
 
-  color:#dce2ea;
+  color:#eadfd5;
 
   margin-left:28px;
 
@@ -145,7 +255,7 @@ a{
 }
 
 .nav a:hover{
-  color:var(--gold2);
+  color:var(--color-5);
 }
 
 
@@ -161,19 +271,47 @@ a{
   padding:110px 28px 100px;
 
   position:relative;
+
   z-index:1;
 }
 
 .kicker{
-  color:var(--gold2);
+  color:#F0C66D;
 
   letter-spacing:.28em;
 
   font-size:12px;
 
-  font-weight:700;
+  font-weight:800;
 
   text-transform:uppercase;
+
+  text-shadow:
+    0 2px 8px rgba(0,0,0,.4);
+}
+
+
+/* Gold accent behind kicker */
+
+.kicker:before{
+  content:"";
+
+  display:inline-block;
+
+  width:30px;
+
+  height:2px;
+
+  margin-right:10px;
+
+  vertical-align:middle;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--color-3),
+      var(--color-5)
+    );
 }
 
 h1{
@@ -196,6 +334,12 @@ h1{
   font-weight:500;
 
   letter-spacing:-.045em;
+
+  color:var(--hero-text);
+
+  text-shadow:
+    0 3px 18px rgba(0,0,0,.45),
+    0 1px 2px rgba(0,0,0,.6);
 }
 
 .subtitle{
@@ -203,10 +347,18 @@ h1{
 
   line-height:1.7;
 
-  color:#cbd3de;
+  color:var(--hero-muted);
 
   max-width:610px;
+
+  text-shadow:
+    0 2px 10px rgba(0,0,0,.35);
 }
+
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
 
 .hero-actions{
   margin-top:42px;
@@ -222,6 +374,7 @@ h1{
   display:inline-flex;
 
   align-items:center;
+
   justify-content:center;
 
   padding:14px 22px;
@@ -234,27 +387,53 @@ h1{
 
   font-weight:700;
 
-  transition:.2s;
+  transition:.25s;
+
+  position:relative;
+
+  overflow:hidden;
 }
 
+
+/* Main gold button */
+
 .btn.primary{
-  background:var(--gold);
+  color:#c53515;
 
-  border-color:var(--gold);
+  border-color:var(--color-5);
 
-  color:#101923;
+  background:
+    radial-gradient(
+      ellipse at 20% 30%,
+      rgba(255,255,255,.20),
+      transparent 25%
+    ),
+    repeating-linear-gradient(
+      100deg,
+      rgba(255,255,255,.06) 0px,
+      rgba(255,255,255,.06) 2px,
+      transparent 2px,
+      transparent 8px
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-3),
+      var(--color-5)
+    );
 }
 
 .btn.primary:hover{
-  background:var(--gold2);
-
   transform:translateY(-2px);
+
+  box-shadow:
+    0 8px 25px
+    rgba(226,180,92,.20);
 }
 
 .btn.ghost:hover{
-  border-color:var(--gold);
+  border-color:var(--color-5);
 
-  color:var(--gold2);
+  color:var(--color-5);
 }
 
 
@@ -263,7 +442,7 @@ h1{
 ========================================================= */
 
 .info-strip{
-  background:#fff;
+  background:var(--white);
 
   border-bottom:1px solid var(--line);
 
@@ -296,6 +475,8 @@ h1{
   font-size:18px;
 
   margin-bottom:5px;
+
+  color:var(--color-1);
 }
 
 .info span{
@@ -336,7 +517,7 @@ h1{
 
   text-transform:uppercase;
 
-  color:#9a7b40;
+  color:var(--color-2);
 
   font-weight:800;
 }
@@ -349,6 +530,11 @@ h2{
   font-weight:500;
 
   margin:10px 0 0;
+
+  color:var(--color-1);
+
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.5);
 }
 
 .section-head p{
@@ -379,7 +565,7 @@ h2{
 }
 
 .card{
-  background:#fff;
+  background:var(--white);
 
   border:1px solid var(--line);
 
@@ -390,20 +576,46 @@ h2{
   position:relative;
 
   transition:.25s;
+
+  overflow:hidden;
+}
+
+
+/* Burgundy accent */
+
+.card:before{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  top:0;
+
+  width:4px;
+  height:100%;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-5),
+      var(--color-3)
+    );
 }
 
 .card:hover{
   transform:translateY(-4px);
 
+  border-color:#cbb59c;
+
   box-shadow:
     0 15px 35px
-    rgba(15,25,35,.07);
+    rgba(62,8,4,.09);
 }
 
 .card-number{
   font-family:Georgia,serif;
 
-  color:var(--gold);
+  color:var(--color-3);
 
   font-size:14px;
 }
@@ -416,6 +628,8 @@ h2{
   font-weight:500;
 
   margin:22px 0 10px;
+
+  color:var(--color-1);
 }
 
 .card p{
@@ -434,11 +648,44 @@ h2{
 ========================================================= */
 
 .register{
-  background:var(--navy);
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(226,180,92,.14),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-1),
+      var(--color-4)
+    );
 
   color:#fff;
 
   padding:90px 0;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+
+/* Painted decorative glow */
+
+.register:before{
+  content:"";
+
+  position:absolute;
+
+  width:420px;
+  height:420px;
+
+  right:-180px;
+  bottom:-220px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(226,180,92,.18);
 }
 
 .form-wrap{
@@ -447,6 +694,10 @@ h2{
   margin:auto;
 
   padding:0 28px;
+
+  position:relative;
+
+  z-index:1;
 }
 
 .form-intro{
@@ -464,20 +715,32 @@ h2{
 .form-intro p{
   max-width:420px;
 
-  color:#aeb9c8;
+  color:var(--color-3);
 
   line-height:1.6;
 
   margin-bottom:0;
 }
 
+.register h2{
+  color:#FFF9EF;
 
+  text-shadow:
+    0 3px 15px rgba(0,0,0,.45);
+}
+
+.register .eyebrow{
+  color:#E2B45C;
+
+  text-shadow:
+    0 2px 8px rgba(0,0,0,.4);
+}
 /* =========================================================
    FORM CARD
 ========================================================= */
 
 .form{
-  background:#fff;
+  background:var(--white);
 
   color:var(--ink);
 
@@ -485,9 +748,11 @@ h2{
 
   border-radius:5px;
 
+  border:1px solid rgba(226,180,92,.25);
+
   box-shadow:
     0 25px 70px
-    rgba(0,0,0,.22);
+    rgba(30,5,3,.30);
 }
 
 
@@ -533,6 +798,8 @@ label{
   letter-spacing:.045em;
 
   text-transform:uppercase;
+
+  color:var(--color-1);
 }
 
 
@@ -549,7 +816,7 @@ textarea{
 
   border:1px solid var(--line);
 
-  background:#fbfaf7;
+  background:#FCF9F4;
 
   border-radius:3px;
 
@@ -582,43 +849,43 @@ textarea{
 
 input::placeholder,
 textarea::placeholder{
-  color:#9aa1aa;
+  color:#9d918b;
 }
 
 input:focus,
 select:focus,
 textarea:focus{
-  border-color:var(--gold);
+  border-color:var(--color-3);
 
   background:#fff;
 
   box-shadow:
     0 0 0 3px
-    rgba(201,164,92,.13);
+    rgba(197,138,80,.15);
 }
 
 
-/* =====================
+/* =========================================================
    SMALL HINT
-=================================================== */
+========================================================= */
 
 .field-hint{
   font-size:10px;
 
-  color:#8a929c;
+  color:#8a7b74;
 
   margin-top:-1px;
 }
 
 
-/* ==============================================
+/* =========================================================
    STRENGTH PICKER
-============*/
+========================================================= */
 
 .strength-picker{
   border:1px solid var(--line);
 
-  background:#fbfaf7;
+  background:#FCF9F4;
 
   border-radius:3px;
 
@@ -658,7 +925,7 @@ textarea:focus{
 
   font-size:17px;
 
-  color:#8b7445;
+  color:var(--color-2);
 
   transition:.2s;
 }
@@ -696,7 +963,7 @@ textarea:focus{
 
   border-radius:3px;
 
-  background:#f2f0ea;
+  background:#F1E8DB;
 
   cursor:pointer;
 
@@ -709,10 +976,12 @@ textarea:focus{
   text-transform:none;
 
   transition:.15s;
+
+  color:var(--color-1);
 }
 
 .strength-options label:hover{
-  background:#eae5d9;
+  background:#E9D9C5;
 }
 
 .strength-options input{
@@ -722,7 +991,7 @@ textarea:focus{
 
   margin:0;
 
-  accent-color:var(--gold);
+  accent-color:var(--color-2);
 }
 
 
@@ -737,8 +1006,6 @@ textarea:focus{
 
   padding:14px;
 
-  background:var(--gold);
-
   border:0;
 
   border-radius:3px;
@@ -751,17 +1018,46 @@ textarea:focus{
 
   letter-spacing:.03em;
 
-  transition:.2s;
+  color:#35150e;
+
+  transition:.25s;
+
+  background:
+    radial-gradient(
+      ellipse at 20% 30%,
+      rgba(255,255,255,.18),
+      transparent 25%
+    ),
+    repeating-linear-gradient(
+      100deg,
+      rgba(255,255,255,.06) 0px,
+      rgba(255,255,255,.06) 2px,
+      transparent 2px,
+      transparent 8px
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-3),
+      var(--color-5)
+    );
 }
 
 .submit:hover{
-  background:var(--gold2);
+  transform:translateY(-1px);
+
+  box-shadow:
+    0 8px 25px
+    rgba(197,138,80,.22);
 }
 
 .submit:disabled{
   opacity:.65;
 
   cursor:not-allowed;
+
+  transform:none;
+
+  box-shadow:none;
 }
 
 
@@ -772,7 +1068,7 @@ textarea:focus{
 .note{
   font-size:11px;
 
-  color:#7a8490;
+  color:#7a706c;
 
   margin-top:11px;
 
@@ -817,7 +1113,12 @@ textarea:focus{
 ========================================================= */
 
 .contact{
-  background:#ece9e1;
+  background:
+    linear-gradient(
+      135deg,
+      #EFE4D5,
+      #F5EEE4
+    );
 }
 
 .contact-box{
@@ -830,11 +1131,35 @@ textarea:focus{
 }
 
 .contact-card{
-  background:#fff;
+  background:var(--white);
 
   padding:30px;
 
   border:1px solid var(--line);
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.contact-card:before{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--color-2),
+      var(--color-5),
+      var(--color-3)
+    );
 }
 
 .contact-card h3{
@@ -845,6 +1170,8 @@ textarea:focus{
   font-weight:500;
 
   margin:0 0 10px;
+
+  color:var(--color-1);
 }
 
 .contact-card p{
@@ -863,9 +1190,14 @@ textarea:focus{
 ========================================================= */
 
 footer{
-  background:#050d17;
+  background:
+    linear-gradient(
+      135deg,
+      #250604,
+      var(--color-1)
+    );
 
-  color:#8e9aa9;
+  color:#C7B4AA;
 
   padding:28px;
 
@@ -874,6 +1206,8 @@ footer{
   font-size:12px;
 
   letter-spacing:.05em;
+
+  border-top:1px solid rgba(226,180,92,.15);
 }
 
 
@@ -922,8 +1256,9 @@ footer{
 
   .section-head p,
   .form-intro p{
-    margin-top:18px;
-  }
+  max-width:420px;
+
+  color:var(--color-3);
 
   .cards,
   .grid,
@@ -946,13 +1281,15 @@ footer{
 }
 
 
-
+/* =========================================================
+   SMALL PHONES
+========================================================= */
 
 @media(max-width:430px){
 
   .nav-links{
     display:none;
-  } 
+  }
 
   h1{
     font-size:58px;

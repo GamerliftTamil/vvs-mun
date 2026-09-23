@@ -3,7 +3,7 @@ import json
 import secrets
 from datetime import datetime
 from zoneinfo import ZoneInfo
-
+from flask import send_from_directory
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 
@@ -349,7 +349,12 @@ def register():
 # ---------------------------------------------------------
 # LOCAL DEVELOPMENT
 # ---------------------------------------------------------
-
+@app.route("/qr")
+def qr():
+    return send_from_directory(
+        "templates",
+        "QR.png"
+    )
 if __name__ == "__main__":
 
     port = int(

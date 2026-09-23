@@ -2,692 +2,19 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
 
-<meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+  <title>VVS-MUN 2026–27 | Registration</title>
 
-<title>VVS-MUN 2026–27 | Registration</title>
-
-<style>
-
-:root{
-  --navy:#07111f;
-  --navy2:#0c1b2e;
-  --gold:#c9a45c;
-  --gold2:#e6c982;
-  --paper:#f5f2eb;
-  --ink:#17202b;
-  --muted:#697383;
-  --line:#d9d5cb;
-}
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
-
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-
-/* ================= HERO ================= */
-
-.hero{
-  min-height:100vh;
-
-  background:
-    radial-gradient(
-      circle at 85% 20%,
-      rgba(201,164,92,.18),
-      transparent 28%
-    ),
-    linear-gradient(
-      135deg,
-      var(--navy),
-      var(--navy2)
-    );
-
-  color:#fff;
-  position:relative;
-  overflow:hidden;
-}
-
-.hero:before{
-  content:"";
-  position:absolute;
-
-  width:520px;
-  height:520px;
-
-  border:1px solid rgba(201,164,92,.2);
-
-  border-radius:50%;
-
-  right:-180px;
-  top:-150px;
-}
-
-.hero:after{
-  content:"";
-  position:absolute;
-
-  width:700px;
-  height:700px;
-
-  border:1px solid rgba(255,255,255,.05);
-
-  border-radius:50%;
-
-  right:-270px;
-  top:-240px;
-}
-
-
-/* ================= NAV ================= */
-
-.nav{
-  height:78px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  max-width:1180px;
-  margin:auto;
-
-  padding:0 28px;
-
-  position:relative;
-  z-index:2;
-}
-
-.brand{
-  font-family:Georgia,serif;
-  font-size:22px;
-  letter-spacing:.12em;
-}
-
-.nav a{
-  font-size:14px;
-  color:#dce2ea;
-  margin-left:28px;
-}
-
-.nav a:hover{
-  color:var(--gold2);
-}
-
-
-/* ================= HERO CONTENT ================= */
-
-.hero-content{
-  max-width:1180px;
-  margin:auto;
-
-  padding:110px 28px 100px;
-
-  position:relative;
-  z-index:1;
-}
-
-.kicker{
-  color:var(--gold2);
-
-  letter-spacing:.28em;
-
-  font-size:12px;
-  font-weight:700;
-
-  text-transform:uppercase;
-}
-
-h1{
-  font-family:Georgia,"Times New Roman",serif;
-
-  font-size:clamp(58px,9vw,112px);
-
-  line-height:.88;
-
-  margin:24px 0 28px;
-
-  font-weight:500;
-
-  letter-spacing:-.045em;
-}
-
-.subtitle{
-  font-size:18px;
-  line-height:1.7;
-
-  color:#cbd3de;
-
-  max-width:610px;
-}
-
-.hero-actions{
-  margin-top:42px;
-
-  display:flex;
-  gap:14px;
-  flex-wrap:wrap;
-}
-
-.btn{
-  display:inline-flex;
-
-  align-items:center;
-  justify-content:center;
-
-  padding:14px 22px;
-
-  border-radius:4px;
-
-  border:1px solid rgba(255,255,255,.25);
-
-  font-size:14px;
-  font-weight:700;
-
-  transition:.2s;
-}
-
-.btn.primary{
-  background:var(--gold);
-  border-color:var(--gold);
-  color:#101923;
-}
-
-.btn.primary:hover{
-  background:var(--gold2);
-  transform:translateY(-2px);
-}
-
-.btn.ghost:hover{
-  border-color:var(--gold);
-  color:var(--gold2);
-}
-
-
-/* ================= INFO STRIP ================= */
-
-.info-strip{
-  background:#fff;
-
-  border-bottom:1px solid var(--line);
-
-  display:grid;
-
-  grid-template-columns:repeat(3,1fr);
-}
-
-.info{
-  padding:25px 28px;
-
-  text-align:center;
-
-  border-right:1px solid var(--line);
-}
-
-.info:last-child{
-  border:0;
-}
-
-.info strong{
-  display:block;
-
-  font-family:Georgia,serif;
-
-  font-size:18px;
-
-  margin-bottom:5px;
-}
-
-.info span{
-  font-size:12px;
-
-  color:var(--muted);
-}
-
-
-/* ================= SECTION ================= */
-
-.section{
-  max-width:1180px;
-
-  margin:auto;
-
-  padding:95px 28px;
-}
-
-.section-head{
-  display:flex;
-
-  justify-content:space-between;
-
-  gap:40px;
-
-  align-items:end;
-
-  margin-bottom:42px;
-}
-
-.eyebrow{
-  font-size:11px;
-
-  letter-spacing:.22em;
-
-  text-transform:uppercase;
-
-  color:#9a7b40;
-
-  font-weight:800;
-}
-
-h2{
-  font-family:Georgia,serif;
-
-  font-size:44px;
-
-  font-weight:500;
-
-  margin:10px 0 0;
-}
-
-.section-head p{
-  max-width:470px;
-
-  color:var(--muted);
-
-  line-height:1.7;
-
-  margin:0;
-}
-
-
-/* ================= CARDS ================= */
-
-.cards{
-  display:grid;
-
-  grid-template-columns:repeat(3,1fr);
-
-  gap:18px;
-}
-
-.card{
-  background:#fff;
-
-  border:1px solid var(--line);
-
-  padding:30px;
-
-  min-height:190px;
-
-  position:relative;
-
-  transition:.25s;
-}
-
-.card:hover{
-  transform:translateY(-4px);
-
-  box-shadow:0 15px 35px rgba(15,25,35,.07);
-}
-
-.card-number{
-  font-family:Georgia,serif;
-
-  color:var(--gold);
-
-  font-size:14px;
-}
-
-.card h3{
-  font-family:Georgia,serif;
-
-  font-size:24px;
-
-  font-weight:500;
-
-  margin:22px 0 10px;
-}
-
-.card p{
-  color:var(--muted);
-
-  font-size:14px;
-
-  line-height:1.65;
-
-  margin:0;
-}
-
-
-/* ================= REGISTER ================= */
-
-.register{
-  background:var(--navy);
-
-  color:#fff;
-
-  padding:100px 0;
-}
-
-.form-wrap{
-  max-width:980px;
-
-  margin:auto;
-
-  padding:0 28px;
-}
-
-.form-intro{
-  display:flex;
-
-  justify-content:space-between;
-
-  gap:50px;
-
-  align-items:end;
-
-  margin-bottom:35px;
-}
-
-.form-intro p{
-  max-width:420px;
-
-  color:#aeb9c8;
-
-  line-height:1.6;
-}
-
-.form{
-  background:#fff;
-
-  color:var(--ink);
-
-  padding:38px;
-
-  border-radius:5px;
-
-  box-shadow:0 25px 70px rgba(0,0,0,.22);
-}
-
-.grid{
-  display:grid;
-
-  grid-template-columns:1fr 1fr;
-
-  gap:22px;
-}
-
-.field{
-  display:flex;
-
-  flex-direction:column;
-
-  gap:8px;
-}
-
-.field.full{
-  grid-column:1/-1;
-}
-
-label{
-  font-size:12px;
-
-  font-weight:800;
-
-  letter-spacing:.04em;
-
-  text-transform:uppercase;
-}
-
-input,
-select{
-  width:100%;
-
-  padding:14px 13px;
-
-  border:1px solid var(--line);
-
-  background:#fbfaf7;
-
-  border-radius:3px;
-
-  font:inherit;
-
-  color:var(--ink);
-
-  outline:none;
-}
-
-input:focus,
-select:focus{
-  border-color:var(--gold);
-
-  box-shadow:
-    0 0 0 3px rgba(201,164,92,.13);
-}
-
-.submit{
-  margin-top:26px;
-
-  width:100%;
-
-  padding:15px;
-
-  background:var(--gold);
-
-  border:0;
-
-  border-radius:3px;
-
-  font-weight:800;
-
-  cursor:pointer;
-
-  font-size:14px;
-
-  transition:.2s;
-}
-
-.submit:hover{
-  background:var(--gold2);
-}
-
-.submit:disabled{
-  opacity:.65;
-
-  cursor:not-allowed;
-}
-
-.note{
-  font-size:12px;
-
-  color:#7a8490;
-
-  margin-top:13px;
-
-  line-height:1.5;
-}
-
-.success{
-  display:none;
-
-  margin-top:18px;
-
-  padding:14px;
-
-  background:#eef7f0;
-
-  border:1px solid #b9d9c0;
-
-  color:#285c34;
-
-  font-size:14px;
-}
-
-.error{
-  display:none;
-
-  margin-top:18px;
-
-  padding:14px;
-
-  background:#fff1f1;
-
-  border:1px solid #e0b7b7;
-
-  color:#8a2525;
-
-  font-size:14px;
-}
-
-
-/* ================= CONTACT ================= */
-
-.contact{
-  background:#ece9e1;
-}
-
-.contact-box{
-  display:grid;
-
-  grid-template-columns:1fr 1fr;
-
-  gap:20px;
-}
-
-.contact-card{
-  background:#fff;
-
-  padding:30px;
-
-  border:1px solid var(--line);
-}
-
-.contact-card h3{
-  font-family:Georgia,serif;
-
-  font-size:24px;
-
-  font-weight:500;
-
-  margin:0 0 10px;
-}
-
-.contact-card p{
-  color:var(--muted);
-
-  line-height:1.7;
-
-  font-size:14px;
-
-  margin:0;
-}
-
-
-/* ================= FOOTER ================= */
-
-footer{
-  background:#050d17;
-
-  color:#8e9aa9;
-
-  padding:28px;
-
-  text-align:center;
-
-  font-size:12px;
-
-  letter-spacing:.05em;
-}
-
-
-/* ================= MOBILE ================= */
-
-@media(max-width:750px){
-
-  .nav{
-    padding:0 18px;
-  }
-
-  .nav a{
-    margin-left:12px;
-    font-size:12px;
-  }
-
-  .nav a:nth-child(1){
-    display:none;
-  }
-
-  .hero-content{
-    padding:90px 22px;
-  }
-
-  .info-strip{
-    grid-template-columns:1fr;
-  }
-
-  .info{
-    border-right:0;
-
-    border-bottom:1px solid var(--line);
-  }
-
-  .section{
-    padding:70px 22px;
-  }
-
-  .section-head,
-  .form-intro{
-    display:block;
-  }
-
-  .section-head p,
-  .form-intro p{
-    margin-top:18px;
-  }
-
-  .cards,
-  .grid,
-  .contact-box{
-    grid-template-columns:1fr;
-  }
-
-  .field.full{
-    grid-column:auto;
-  }
-
-  .form{
-    padding:25px;
-  }
-
-}
-
-</style>
-
+  <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
-
 
 <!-- ================= HERO ================= -->
 
@@ -699,24 +26,13 @@ footer{
       VVS · MUN
     </div>
 
-    <div>
-
-      <a href="#about">
-        THE CONFERENCE
-      </a>
-
-      <a href="#register">
-        REGISTER
-      </a>
-
-      <a href="#contact">
-        CONTACT
-      </a>
-
+    <div class="nav-links">
+      <a href="#about">THE CONFERENCE</a>
+      <a href="#register">REGISTER</a>
+      <a href="#contact">CONTACT</a>
     </div>
 
   </nav>
-
 
   <div class="hero-content">
 
@@ -736,7 +52,6 @@ footer{
       negotiation and thoughtful global discussion.
       Register your delegation details below.
     </p>
-
 
     <div class="hero-actions">
 
@@ -766,41 +81,18 @@ footer{
 <div class="info-strip">
 
   <div class="info">
-
-    <strong>
-      Delegate Registration
-    </strong>
-
-    <span>
-      Submit your details securely
-    </span>
-
+    <strong>Delegate Registration</strong>
+    <span>Submit your details securely</span>
   </div>
 
-
   <div class="info">
-
-    <strong>
-      Committee Based
-    </strong>
-
-    <span>
-      Choose your committee & country
-    </span>
-
+    <strong>Committee Based</strong>
+    <span>Choose your committee & country</span>
   </div>
 
-
   <div class="info">
-
-    <strong>
-      Management Desk
-    </strong>
-
-    <span>
-      Official contact details below
-    </span>
-
+    <strong>Management Desk</strong>
+    <span>Official contact details below</span>
   </div>
 
 </div>
@@ -827,7 +119,6 @@ footer{
       </h2>
 
     </div>
-
 
     <p>
       VVS-MUN 2026–27 brings students together
@@ -911,7 +202,6 @@ footer{
 
   <div class="form-wrap">
 
-
     <div class="form-intro">
 
       <div>
@@ -926,7 +216,6 @@ footer{
 
       </div>
 
-
       <p>
         Fill in the details exactly as they should
         appear in the conference records.
@@ -936,6 +225,8 @@ footer{
 
     </div>
 
+
+    <!-- ================= FORM ================= -->
 
     <form
       class="form"
@@ -951,7 +242,7 @@ footer{
         <div class="field">
 
           <label for="name">
-            Full Name
+            Full Name *
           </label>
 
           <input
@@ -960,7 +251,7 @@ footer{
             type="text"
             autocomplete="name"
             required
-            placeholder="Enter your full name"
+            placeholder="Full name"
           >
 
         </div>
@@ -971,7 +262,7 @@ footer{
         <div class="field">
 
           <label for="classsec">
-            Class & Section
+            Class & Section *
           </label>
 
           <input
@@ -985,12 +276,92 @@ footer{
         </div>
 
 
+        <!-- EMAIL -->
+
+        <div class="field">
+
+          <label for="email">
+            Email Address *
+          </label>
+
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            placeholder="Email address"
+          >
+
+        </div>
+
+
+        <!-- PHONE -->
+
+        <div class="field">
+
+          <label for="phone">
+            Contact Number *
+          </label>
+
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            required
+            placeholder="Contact number"
+          >
+
+        </div>
+
+
+        <!-- PARENT NAME -->
+
+        <div class="field">
+
+          <label for="parentName">
+            Parent/Guardian Name *
+          </label>
+
+          <input
+            id="parentName"
+            name="parentName"
+            type="text"
+            required
+            placeholder="Parent/guardian name"
+          >
+
+        </div>
+
+
+        <!-- PARENT PHONE -->
+
+        <div class="field">
+
+          <label for="parentPhone">
+            Parent/Guardian Contact *
+          </label>
+
+          <input
+            id="parentPhone"
+            name="parentPhone"
+            type="tel"
+            inputmode="tel"
+            required
+            placeholder="Contact number"
+          >
+
+        </div>
+
+
         <!-- COMMITTEE -->
 
         <div class="field">
 
           <label for="committee">
-            Committee
+            Committee Preference *
           </label>
 
           <select
@@ -1003,20 +374,20 @@ footer{
               Select committee
             </option>
 
-            <option value="UN General Assembly (UNGA)">
-              UN General Assembly (UNGA)
+            <option value="United Nations General Assembly (UNGA)">
+              UNGA — General Assembly
             </option>
 
-            <option value="United Nations Security Council (UNSC)">
-              United Nations Security Council (UNSC)
+            <option value="United Nations Human Rights Council (UNHRC)">
+              UNHRC — Human Rights Council
             </option>
 
-            <option value="UN Human Rights Council (UNHRC)">
-              UN Human Rights Council (UNHRC)
+            <option value="All India Political Parties Meet (AIPPM)">
+              AIPPM — Political Parties Meet
             </option>
 
-            <option value="Other / To be assigned">
-              Other / To be assigned
+            <option value="United Nations Economic and Social Council (ECOSOC)">
+              ECOSOC — Economic & Social Council
             </option>
 
           </select>
@@ -1036,36 +407,252 @@ footer{
             id="country"
             name="country"
             type="text"
-            required
-            placeholder="Enter country"
+            placeholder="Country"
           >
 
         </div>
 
 
-        <!-- PHONE -->
+        <!-- PARTICIPATED -->
 
-        <div class="field full">
+        <div class="field">
 
-          <label for="phone">
-            Phone Number
+          <label for="participated">
+            Participated in an MUN before? *
+          </label>
+
+          <select
+            id="participated"
+            name="participated"
+            required
+          >
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="Yes">
+              Yes
+            </option>
+
+            <option value="No">
+              No
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- MUN COUNT -->
+
+        <div class="field">
+
+          <label for="munCount">
+            MUNs Attended *
+          </label>
+
+          <select
+            id="munCount"
+            name="munCount"
+            required
+          >
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="Below 3">
+              Below 3
+            </option>
+
+            <option value="3 and Above">
+              3 and Above
+            </option>
+
+            <option value="NIL">
+              NIL
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- AWARDS -->
+
+        <div class="field">
+
+          <label for="awards">
+            Won any MUN awards? *
+          </label>
+
+          <select
+            id="awards"
+            name="awards"
+            required
+          >
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="Yes">
+              Yes
+            </option>
+
+            <option value="No">
+              No
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- PREVIOUS AWARDS -->
+
+        <div
+          class="field"
+          id="previousAwardsField"
+          style="display:none;"
+        >
+
+          <label for="previousAwards">
+            Previous MUN Awards
           </label>
 
           <input
-            id="phone"
-            name="phone"
-            type="tel"
-            inputmode="tel"
-            autocomplete="tel"
-            required
-            placeholder="Enter contact number"
+            id="previousAwards"
+            name="previousAwards"
+            type="text"
+            placeholder="e.g. Best Delegate, HM..."
           >
+
+        </div>
+
+
+        <div class="field full">
+
+          <label for="whyParticipate">
+            Why do you want to participate in this MUN? *
+          </label>
+
+          <textarea
+            id="whyParticipate"
+            name="whyParticipate"
+            required
+            rows="3"
+            maxlength="600"
+            placeholder="Tell us briefly why you would like to participate..."
+          ></textarea>
+
+          <div class="field-hint">
+            Keep your response concise.
+          </div>
+
+        </div>
+
+        <!-- STRENGTHS -->
+
+        <div class="field full">
+
+          <label>
+            What are your strengths? *
+          </label>
+
+          <details class="strength-picker">
+
+            <summary id="strengthSummary">
+              Select your strengths
+            </summary>
+
+            <div class="strength-options">
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="strengths"
+                  value="Public Speaking"
+                >
+                Public Speaking
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="strengths"
+                  value="Research"
+                >
+                Research
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="strengths"
+                  value="Negotiation"
+                >
+                Negotiation
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="strengths"
+                  value="Leadership"
+                >
+                Leadership
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="strengths"
+                  value="Teamwork"
+                >
+                Teamwork
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="strengths"
+                  value="Critical Thinking"
+                >
+                Critical Thinking
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="strengths"
+                  value="Writing"
+                >
+                Writing
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="strengths"
+                  value="Problem Solving"
+                >
+                Problem Solving
+              </label>
+
+            </div>
+
+          </details>
+
+          <div class="field-hint">
+            Select one or more strengths.
+          </div>
 
         </div>
 
 
       </div>
-
 
       <button
         class="submit"
@@ -1104,15 +691,12 @@ footer{
         your registration. Please try again.
       </div>
 
-
     </form>
 
   </div>
 
 </section>
 
-
-<!-- ================= CONTACT ================= -->
 
 <section
   class="section contact"
@@ -1133,19 +717,16 @@ footer{
 
     </div>
 
-
     <p>
-      Keep this section for the official VVS-MUN
-      management contact information.
-      Replace the placeholders with the school's
-      approved details before publishing.
+      We are always ready to support you with any dobts and qustions
+      Contact us with the methods mentioned in the management desk anytime!
+
     </p>
 
   </div>
 
 
   <div class="contact-box">
-
 
     <div class="contact-card">
 
@@ -1156,12 +737,12 @@ footer{
       <p>
 
         <strong>Email:</strong>
-        management@example.com
+        agaramudhalvan.jayachandran@gmail.com
 
         <br><br>
 
         <strong>Phone:</strong>
-        +91 XXXXX XXXXX
+        +91 9363029137
 
       </p>
 
@@ -1182,41 +763,23 @@ footer{
 
     </div>
 
-
   </div>
 
 </section>
 
 
+<!-- ================= FOOTER ================= -->
+
 <footer>
-
   VVS-MUN 2026–27 · Official Delegate Registration
-
 </footer>
 
 
+<!-- ================= JAVASCRIPT ================= -->
+
 <script>
 
-/*
-============================================================
-VVS-MUN REGISTRATION
-============================================================
-
-The frontend and Flask backend are hosted on the same
-Render Web Service.
-
-Therefore /register automatically points to:
-
-https://vvs-mun.onrender.com/register
-
-No external backend URL is required.
-
-============================================================
-*/
-
-
 const BACKEND_URL = "/register";
-
 
 const form =
   document.getElementById("registrationForm");
@@ -1230,10 +793,102 @@ const error =
 const submitButton =
   document.getElementById("submitButton");
 
+const awards =
+  document.getElementById("awards");
 
-/* ============================================================
-   FORM SUBMISSION
-============================================================ */
+const previousAwardsField =
+  document.getElementById("previousAwardsField");
+
+const previousAwards =
+  document.getElementById("previousAwards");
+
+const strengthSummary =
+  document.getElementById("strengthSummary");
+
+
+/*
+============================================================
+SHOW / HIDE PREVIOUS AWARDS
+============================================================
+*/
+
+awards.addEventListener("change", function(){
+
+  if(this.value === "Yes"){
+
+    previousAwardsField.style.display = "flex";
+
+  }
+
+  else{
+
+    previousAwardsField.style.display = "none";
+
+    previousAwards.value = "";
+
+  }
+
+});
+
+
+/*
+============================================================
+UPDATE STRENGTH SUMMARY
+============================================================
+*/
+
+function updateStrengthSummary(){
+
+  const selected =
+    Array.from(
+      document.querySelectorAll(
+        'input[name="strengths"]:checked'
+      )
+    ).map(function(item){
+      return item.value;
+    });
+
+  if(selected.length === 0){
+
+    strengthSummary.textContent =
+      "Select your strengths";
+
+  }
+
+  else if(selected.length <= 2){
+
+    strengthSummary.textContent =
+      selected.join(" • ");
+
+  }
+
+  else{
+
+    strengthSummary.textContent =
+      selected.length + " strengths selected";
+
+  }
+
+}
+
+
+document
+  .querySelectorAll('input[name="strengths"]')
+  .forEach(function(checkbox){
+
+    checkbox.addEventListener(
+      "change",
+      updateStrengthSummary
+    );
+
+  });
+
+
+/*
+============================================================
+FORM SUBMISSION
+============================================================
+*/
 
 form.addEventListener(
   "submit",
@@ -1241,57 +896,159 @@ form.addEventListener(
 
     event.preventDefault();
 
-
-    /* Hide previous messages */
-
     success.style.display = "none";
     error.style.display = "none";
 
 
-    /* Browser-side validation */
+    /*
+    --------------------------------------------------------
+    GET VALUES
+    --------------------------------------------------------
+    */
 
     const name =
-      document.getElementById("name").value.trim();
+      document.getElementById("name")
+        .value.trim();
 
     const classsec =
-      document.getElementById("classsec").value.trim();
+      document.getElementById("classsec")
+        .value.trim();
 
-    const committee =
-      document.getElementById("committee").value.trim();
-
-    const country =
-      document.getElementById("country").value.trim();
+    const email =
+      document.getElementById("email")
+        .value.trim();
 
     const phone =
-      document.getElementById("phone").value.trim();
+      document.getElementById("phone")
+        .value.trim();
 
+    const parentName =
+      document.getElementById("parentName")
+        .value.trim();
+
+    const parentPhone =
+      document.getElementById("parentPhone")
+        .value.trim();
+
+    const committee =
+      document.getElementById("committee")
+        .value.trim();
+
+    const country =
+      document.getElementById("country")
+        .value.trim();
+
+    const participated =
+      document.getElementById("participated")
+        .value.trim();
+
+    const munCount =
+      document.getElementById("munCount")
+        .value.trim();
+
+    const awardsValue =
+      document.getElementById("awards")
+        .value.trim();
+
+    const previousAwardsValue =
+      document.getElementById("previousAwards")
+        .value.trim();
+
+    const whyParticipate =
+      document.getElementById("whyParticipate")
+        .value.trim();
+
+
+    /*
+    --------------------------------------------------------
+    GET SELECTED STRENGTHS
+    --------------------------------------------------------
+    */
+
+    const strengthElements =
+      document.querySelectorAll(
+        'input[name="strengths"]:checked'
+      );
+
+    const strengths =
+      Array.from(strengthElements)
+        .map(function(item){
+          return item.value;
+        });
+
+
+    /*
+    --------------------------------------------------------
+    VALIDATION
+    --------------------------------------------------------
+    */
 
     if(
       !name ||
       !classsec ||
+      !email ||
+      !phone ||
+      !parentName ||
+      !parentPhone ||
       !committee ||
-      !country ||
-      !phone
+      !participated ||
+      !munCount ||
+      !awardsValue ||
+      !whyParticipate ||
+      strengths.length === 0
     ){
 
       error.textContent =
-        "Please complete all registration fields.";
+        "Please complete all required registration fields.";
 
-      error.style.display = "block";
+      error.style.display =
+        "block";
 
       return;
+
     }
 
 
-    /* Prevent multiple submissions */
+    /*
+    --------------------------------------------------------
+    VALIDATE EMAIL
+    --------------------------------------------------------
+    */
 
-    submitButton.disabled = true;
+    const emailPattern =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!emailPattern.test(email)){
+
+      error.textContent =
+        "Please enter a valid email address.";
+
+      error.style.display =
+        "block";
+
+      return;
+
+    }
+
+
+    /*
+    --------------------------------------------------------
+    PREVENT MULTIPLE SUBMISSIONS
+    --------------------------------------------------------
+    */
+
+    submitButton.disabled =
+      true;
 
     submitButton.textContent =
       "SUBMITTING...";
 
 
-    /* Registration data */
+    /*
+    --------------------------------------------------------
+    DATA SENT TO FLASK
+    --------------------------------------------------------
+    */
 
     const data = {
 
@@ -1299,11 +1056,29 @@ form.addEventListener(
 
       classsec: classsec,
 
+      email: email,
+
+      phone: phone,
+
+      parentName: parentName,
+
+      parentPhone: parentPhone,
+
       committee: committee,
 
       country: country,
 
-      phone: phone
+      participated: participated,
+
+      munCount: munCount,
+
+      awards: awardsValue,
+
+      previousAwards: previousAwardsValue,
+
+      whyParticipate: whyParticipate,
+
+      strengths: strengths.join(", ")
 
     };
 
@@ -1312,7 +1087,7 @@ form.addEventListener(
 
       /*
       --------------------------------------------------------
-      Send registration to Flask
+      SEND TO BACKEND
       --------------------------------------------------------
       */
 
@@ -1335,7 +1110,7 @@ form.addEventListener(
 
       /*
       --------------------------------------------------------
-      Try to read JSON response
+      READ RESPONSE
       --------------------------------------------------------
       */
 
@@ -1357,7 +1132,7 @@ form.addEventListener(
 
       /*
       --------------------------------------------------------
-      Check backend result
+      SUCCESS
       --------------------------------------------------------
       */
 
@@ -1367,6 +1142,12 @@ form.addEventListener(
       ){
 
         form.reset();
+
+        previousAwardsField.style.display =
+          "none";
+
+        strengthSummary.textContent =
+          "Select your strengths";
 
         success.textContent =
           "Registration submitted successfully. Your details have been recorded.";
@@ -1390,6 +1171,7 @@ form.addEventListener(
 
     }
 
+
     catch(err){
 
       console.error(
@@ -1412,7 +1194,7 @@ form.addEventListener(
 
     /*
     --------------------------------------------------------
-    Restore submit button
+    RESTORE BUTTON
     --------------------------------------------------------
     */
 
@@ -1425,7 +1207,7 @@ form.addEventListener(
 
     /*
     --------------------------------------------------------
-    Hide messages after 6 seconds
+    HIDE MESSAGES
     --------------------------------------------------------
     */
 
@@ -1447,7 +1229,5 @@ form.addEventListener(
 
 </script>
 
-
 </body>
-
 </html>

@@ -1450,6 +1450,163 @@ footer{
   }
 
 }
+
+
+/* =========================================================
+   COMMITTEE SHOWCASE — CONFERENCE AREA
+========================================================= */
+
+.committee-showcase{
+  margin-top:58px;
+  padding:42px;
+  background:var(--white);
+  border:1px solid var(--line);
+  box-shadow:0 18px 45px rgba(62,8,4,.055);
+  position:relative;
+  overflow:hidden;
+}
+
+.committee-showcase:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:4px;
+  background:linear-gradient(90deg,var(--color-2),var(--color-5),var(--color-3));
+}
+
+.committee-heading{
+  text-align:center;
+  max-width:680px;
+  margin:0 auto 34px;
+}
+
+.committee-heading .eyebrow{
+  margin-bottom:10px;
+}
+
+.committee-heading h3{
+  font-family:Georgia,serif;
+  font-weight:500;
+  font-size:clamp(30px,4vw,40px);
+  line-height:1.15;
+  color:var(--color-1);
+  margin:0 0 12px;
+}
+
+.committee-heading p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.75;
+}
+
+.committee-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:22px;
+}
+
+.committee-card{
+  min-width:0;
+  display:grid;
+  grid-template-columns:minmax(125px, 38%) minmax(0,1fr);
+  background:#FCF9F4;
+  border:1px solid var(--line);
+  overflow:hidden;
+  transition:transform .25s, box-shadow .25s, border-color .25s;
+}
+
+.committee-card:hover{
+  transform:translateY(-4px);
+  border-color:#cbb59c;
+  box-shadow:0 14px 32px rgba(62,8,4,.10);
+}
+
+.committee-poster{
+  width:100%;
+  height:100%;
+  min-height:270px;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+  background:var(--color-1);
+}
+
+.committee-copy{
+  padding:24px 22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-width:0;
+}
+
+.committee-tag{
+  display:inline-block;
+  align-self:flex-start;
+  color:var(--color-2);
+  background:#F1E5D6;
+  border:1px solid #E2D0BA;
+  padding:5px 9px;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+
+.committee-copy h4{
+  font-family:Georgia,serif;
+  font-size:23px;
+  line-height:1.15;
+  font-weight:500;
+  color:var(--color-1);
+  margin:0 0 12px;
+}
+
+.committee-copy p{
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.75;
+}
+
+.committee-agenda{
+  margin-top:15px;
+  padding-top:12px;
+  border-top:1px solid var(--line);
+  color:var(--color-1);
+  font-size:11px;
+  line-height:1.6;
+}
+
+.committee-agenda strong{
+  display:block;
+  color:var(--color-2);
+  font-size:10px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+
+@media(max-width:900px){
+  .committee-showcase{padding:32px 24px;}
+  .committee-grid{grid-template-columns:1fr;}
+  .committee-card{grid-template-columns:minmax(130px,32%) minmax(0,1fr);}
+  .committee-poster{min-height:260px;}
+}
+
+@media(max-width:520px){
+  .committee-showcase{padding:30px 16px;margin-top:42px;}
+  .committee-heading{margin-bottom:25px;}
+  .committee-card{grid-template-columns:1fr;}
+  .committee-poster{height:auto;max-height:440px;min-height:0;object-fit:contain;object-position:center;background:#3E0804;}
+  .committee-copy{padding:22px;}
+  .committee-copy h4{font-size:24px;}
+  .committee-copy p{font-size:14px;}
+}
+
 </style>
 </head>
 
@@ -1627,6 +1784,108 @@ footer{
 
     </article>
 
+  </div>
+
+  <!-- ================= COMMITTEE SHOWCASE ================= -->
+  <div class="committee-showcase">
+    <div class="committee-heading">
+      <div class="eyebrow">Explore the Committees</div>
+      <h3>Four Forums. Four Perspectives.</h3>
+      <p>
+        Discover the committees at VVS-MUN 2026–27, each offering a distinct
+        setting to research current issues, represent perspectives and work
+        towards informed solutions.
+      </p>
+    </div>
+
+    <div class="committee-grid">
+      <article class="committee-card">
+        <img class="committee-poster" src="committee-images/unhrc.jpeg"
+             alt="UNHRC committee poster" loading="lazy">
+        <div class="committee-copy">
+          <span class="committee-tag">Committee 01</span>
+          <h4>UNHRC</h4>
+          <p>
+            The United Nations Human Rights Council focuses on protecting
+            fundamental rights and freedoms around the world.
+            Delegates examine allegations of human rights violations and
+            discuss ways to strengthen accountability.
+            They represent country positions, debate safeguards and consider
+            how security measures can respect human dignity.
+          </p>
+          <div class="committee-agenda">
+            <strong>Agenda</strong>
+            Security Without Impunity: Establishing Accountability for Human
+            Rights Violations Committed Under the Pretext of Counter-Terrorism.
+          </div>
+        </div>
+      </article>
+
+      <article class="committee-card">
+        <img class="committee-poster" src="committee-images/unga.jpeg"
+             alt="UNGA committee poster" loading="lazy">
+        <div class="committee-copy">
+          <span class="committee-tag">Committee 02</span>
+          <h4>UNGA</h4>
+          <p>
+            The United Nations General Assembly brings member states together
+            to discuss international issues and propose collective action.
+            Delegates present their country's position, negotiate with other
+            representatives and work on resolutions.
+            The committee encourages diplomacy, historical research and
+            cooperation on matters of global importance.
+          </p>
+          <div class="committee-agenda">
+            <strong>Agenda</strong>
+            Partition Plan of Palestine.
+          </div>
+        </div>
+      </article>
+
+      <article class="committee-card">
+        <img class="committee-poster" src="committee-images/ecosoc.jpeg"
+             alt="ECOSOC committee poster" loading="lazy">
+        <div class="committee-copy">
+          <span class="committee-tag">Committee 03</span>
+          <h4>ECOSOC</h4>
+          <p>
+            The United Nations Economic and Social Council addresses economic,
+            social and development challenges through international cooperation.
+            Delegates consider how geopolitical tensions affect economies,
+            communities and essential resources.
+            Discussion centres on practical, coordinated approaches to
+            economic stability and sustainable development.
+          </p>
+          <div class="committee-agenda">
+            <strong>Agenda</strong>
+            Economic impacts of current geopolitical tensions in the Middle
+            East, with special emphasis on the global energy supply chain.
+          </div>
+        </div>
+      </article>
+
+      <article class="committee-card">
+        <img class="committee-poster" src="committee-images/aippm.jpeg"
+             alt="All India Political Parties Meet committee poster" loading="lazy">
+        <div class="committee-copy">
+          <span class="committee-tag">Committee 04</span>
+          <h4>AIPPM</h4>
+          <p>
+            The All India Political Parties Meet simulates a forum for Indian
+            political parties to debate national policy and public concerns.
+            Delegates speak from the perspectives of political parties and
+            engage with differing viewpoints.
+            The committee focuses on parliamentary-style discussion,
+            negotiation and policy proposals for issues affecting India.
+          </p>
+          <div class="committee-agenda">
+            <strong>Agenda</strong>
+            Managing the National Examination Integrity Crisis Following the
+            Resignation of the Union Minister of Education.
+          </div>
+        </div>
+      </article>
+    </div>
   </div>
 
 </section>
@@ -2587,8 +2846,12 @@ form.addEventListener(
 
         success.style.display = "block";
         error.style.display = "none";
-
         form.reset();
+
+        // Reset conditional fields and summaries.
+        previousAwardsField.style.display = "none";
+        previousAwards.required = false;
+        strengthSummary.textContent = "No strengths selected";
 
       }
 

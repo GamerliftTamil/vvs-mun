@@ -1316,3 +1316,144 @@ footer{
   }
 
 }
+/* =========================================
+   MOBILE RESPONSIVE FIX
+========================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* MOBILE SCREENS */
+@media screen and (max-width: 768px) {
+
+    .hero,
+    .section,
+    .register,
+    .info-strip,
+    footer {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 24px 18px 60px;
+    }
+
+    .nav {
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 11vw, 4rem);
+        line-height: 1.05;
+        overflow-wrap: anywhere;
+    }
+
+    .subtitle {
+        max-width: 100%;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .hero-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .info-strip {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 24px 18px;
+    }
+
+    .section,
+    .register {
+        padding: 50px 18px;
+    }
+
+    .section-head,
+    .form-intro {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .section-head h2,
+    .form-intro h2 {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+        overflow-wrap: break-word;
+    }
+
+    .cards,
+    .grid,
+    .contact-box {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        gap: 18px;
+    }
+
+    .field,
+    .field.full,
+    .card,
+    .contact-card {
+        width: 100%;
+        min-width: 0;
+    }
+
+    input,
+    select,
+    textarea {
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .submit {
+        width: 100%;
+        max-width: 100%;
+    }
+
+}

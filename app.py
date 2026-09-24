@@ -3,8 +3,8 @@ import json
 import secrets
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from flask import send_from_directory
-from flask import Flask, request, jsonify, render_template
+
+from flask import Flask, request, jsonify, render_template, send_from_directory
 from flask_cors import CORS
 
 import gspread
@@ -14,18 +14,27 @@ from google.oauth2.service_account import Credentials
 app = Flask(__name__)
 CORS(app)
 
+
+# ---------------------------------------------------------
+# GOOGLE SHEETS CONFIGURATION
+# ---------------------------------------------------------
+
 SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID")
 GOOGLE_CREDENTIALS = os.environ.get("GOOGLE_CREDENTIALS")
 
 if not SPREADSHEET_ID:
-    raise RuntimeError("SPREADSHEET_ID environment variable is missing")
+    raise RuntimeError(
+        "SPREADSHEET_ID environment variable is missing"
+    )
 
 if not GOOGLE_CREDENTIALS:
-    raise RuntimeError("GOOGLE_CREDENTIALS environment variable is missing")
+    raise RuntimeError(
+        "GOOGLE_CREDENTIALS environment variable is missing"
+    )
 
 
 # ---------------------------------------------------------
-# GOOGLE SHEETS
+# CONNECT TO GOOGLE SHEETS
 # ---------------------------------------------------------
 
 SCOPES = [
@@ -49,7 +58,9 @@ except Exception as e:
 try:
     client = gspread.authorize(credentials)
 
-    spreadsheet = client.open_by_key(SPREADSHEET_ID)
+    spreadsheet = client.open_by_key(
+        SPREADSHEET_ID
+    )
 
     worksheet = spreadsheet.sheet1
 
@@ -60,29 +71,18 @@ except Exception as e:
 
 
 # ---------------------------------------------------------
-# ROUTES
+# HOME PAGE
 # ---------------------------------------------------------
 
 @app.route("/", methods=["GET"])
 def home():
+
     return render_template("index.html")
 
 
-@app.route("/payment", methods=["GET"])
-def payment():
-    registration_id = request.args.get("id", "").strip()
-
-    if not registration_id:
-        return render_template(
-            "payment.html",
-            registration_id="Not available"
-        )
-
-    return render_template(
-        "payment.html",
-        registration_id=registration_id
-    )
-
+# ---------------------------------------------------------
+# HEALTH CHECK
+# ---------------------------------------------------------
 
 @app.route("/health", methods=["GET"])
 def health():
@@ -95,7 +95,7 @@ def health():
 
 
 # ---------------------------------------------------------
-# REGISTRATION ID
+# REGISTRATION ID GENERATOR
 # ---------------------------------------------------------
 
 def generate_registration_id():
@@ -114,9 +114,10 @@ def register():
 
     try:
 
-        data = request.get_json()
+        data = request.get_json(silent=True)
 
-        if not data:
+        if not data or not isinstance(data, dict):
+
             return jsonify({
                 "success": False,
                 "message": "No registration data received."
@@ -214,7 +215,7 @@ def register():
 
 
         # -------------------------------------------------
-        # EMAIL CHECK
+        # EMAIL VALIDATION
         # -------------------------------------------------
 
         if "@" not in email or "." not in email:
@@ -226,14 +227,17 @@ def register():
 
 
         # -------------------------------------------------
-        # WHY PARTICIPATE LENGTH
+        # WHY PARTICIPATE LENGTH VALIDATION
         # -------------------------------------------------
 
         if len(why_participate) > 600:
 
             return jsonify({
                 "success": False,
-                "message": "Why Participate must be 600 characters or less."
+                "message": (
+                    "Why Participate must be "
+                    "600 characters or less."
+                )
             }), 400
 
 
@@ -248,15 +252,6 @@ def register():
         )
 
         registration_id = generate_registration_id()
-
-
-        # -------------------------------------------------
-        # PAYMENT
-        # -------------------------------------------------
-
-        amount_paid = ""
-
-        payment_status = "PENDING"
 
 
         # -------------------------------------------------
@@ -278,12 +273,11 @@ def register():
         # N = Previous Awards
         # O = Why Participate
         # P = Strengths
-        # Q = Amount Paid
-        # R = Payment Status
+        #
+        # NO PAYMENT INFORMATION
         # -------------------------------------------------
 
         row = [
-
             timestamp,
             registration_id,
             name,
@@ -299,12 +293,13 @@ def register():
             awards,
             previous_awards,
             why_participate,
-            strengths,
-            amount_paid,
-            payment_status
-
+            strengths
         ]
 
+
+        # -------------------------------------------------
+        # SAVE DIRECTLY TO GOOGLE SHEETS
+        # -------------------------------------------------
 
         worksheet.append_row(
             row,
@@ -313,18 +308,18 @@ def register():
 
 
         # -------------------------------------------------
-        # SUCCESS
+        # REGISTRATION SUCCESS
         # -------------------------------------------------
 
         return jsonify({
 
             "success": True,
 
-            "message": "Registration successfully recorded.",
+            "message": (
+                "Registration successfully recorded."
+            ),
 
-            "registration_id": registration_id,
-
-            "payment_url": f"/payment?id={registration_id}"
+            "registration_id": registration_id
 
         }), 200
 
@@ -340,21 +335,31 @@ def register():
 
             "success": False,
 
-            "message":
-                "Unable to save registration. Please try again."
+            "message": (
+                "Unable to save registration. "
+                "Please try again."
+            )
 
         }), 500
 
 
 # ---------------------------------------------------------
-# LOCAL DEVELOPMENT
+# QR CODE
 # ---------------------------------------------------------
-@app.route("/qr")
+
+@app.route("/qr", methods=["GET"])
 def qr():
+
     return send_from_directory(
         "templates",
         "QR.png"
     )
+
+
+# ---------------------------------------------------------
+# LOCAL DEVELOPMENT
+# ---------------------------------------------------------
+
 if __name__ == "__main__":
 
     port = int(

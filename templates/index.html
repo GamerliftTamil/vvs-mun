@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -255,6 +254,7 @@ a{
 
 .nav-links{
   display:flex;
+
   align-items:center;
 }
 
@@ -310,6 +310,7 @@ a{
   display:inline-block;
 
   width:30px;
+
   height:2px;
 
   margin-right:10px;
@@ -885,6 +886,11 @@ textarea:focus{
     rgba(197,138,80,.15);
 }
 
+
+/* =========================================================
+   SMALL HINT
+========================================================= */
+
 .field-hint{
   font-size:10px;
 
@@ -1458,7 +1464,7 @@ footer{
 
   max-width:680px;
 
-  margin:0 auto 28px;
+  margin:0 auto 34px;
 }
 
 .committee-heading .eyebrow{
@@ -1493,157 +1499,6 @@ footer{
 
   line-height:1.75;
 }
-
-
-/* =========================================================
-   COUNTRY & VACANCY LINK
-========================================================= */
-
-.committee-list-link{
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:20px;
-
-  margin:0 auto 34px;
-
-  max-width:680px;
-
-  padding:15px 18px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #F8F0E4,
-      #F1E3D2
-    );
-
-  border:1px solid #DCC7AA;
-
-  border-left:4px solid var(--color-5);
-
-  color:var(--color-1);
-
-  transition:
-    transform .2s,
-    box-shadow .2s,
-    border-color .2s;
-
-  position:relative;
-
-  overflow:hidden;
-}
-
-.committee-list-link:hover{
-  transform:translateY(-2px);
-
-  border-color:var(--color-3);
-
-  box-shadow:
-    0 8px 22px
-    rgba(62,8,4,.10);
-}
-
-.committee-list-info{
-  display:flex;
-
-  align-items:center;
-
-  gap:13px;
-
-  min-width:0;
-}
-
-.committee-list-icon{
-  width:36px;
-  height:36px;
-
-  flex:0 0 36px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  border-radius:50%;
-
-  background:var(--color-1);
-
-  color:var(--color-5);
-
-  font-size:16px;
-
-  font-weight:800;
-
-  border:1px solid rgba(226,180,92,.45);
-}
-
-.committee-list-text{
-  min-width:0;
-}
-
-.committee-list-text strong{
-  display:block;
-
-  font-family:Georgia,serif;
-
-  font-size:16px;
-
-  font-weight:500;
-
-  color:var(--color-1);
-
-  margin-bottom:2px;
-}
-
-.committee-list-text span{
-  display:block;
-
-  color:var(--muted);
-
-  font-size:11px;
-
-  line-height:1.5;
-}
-
-.committee-list-arrow{
-  flex:0 0 auto;
-
-  padding:9px 13px;
-
-  border:1px solid var(--color-3);
-
-  color:var(--color-2);
-
-  background:rgba(255,255,255,.55);
-
-  font-size:11px;
-
-  font-weight:800;
-
-  letter-spacing:.08em;
-
-  text-transform:uppercase;
-
-  transition:.2s;
-}
-
-.committee-list-link:hover .committee-list-arrow{
-  background:var(--color-1);
-
-  color:var(--color-5);
-
-  border-color:var(--color-1);
-}
-
-
-/* =========================================================
-   COMMITTEE GRID
-========================================================= */
 
 .committee-grid{
   display:grid;
@@ -1688,6 +1543,12 @@ footer{
     rgba(62,8,4,.10);
 }
 
+
+/* =========================================================
+   COMMITTEE POSTERS
+   FULL IMAGE — NO CROPPING
+========================================================= */
+
 .committee-poster{
   width:100%;
 
@@ -1695,14 +1556,19 @@ footer{
 
   min-height:270px;
 
-  object-fit:cover;
+  object-fit:contain;
 
-  object-position:top center;
+  object-position:center center;
 
   display:block;
 
   background:var(--color-1);
 }
+
+
+/* =========================================================
+   COMMITTEE COPY
+========================================================= */
 
 .committee-copy{
   padding:24px 22px;
@@ -1794,7 +1660,7 @@ footer{
 
 
 /* =========================================================
-   COMMITTEE MOBILE
+   COMMITTEE TABLET
 ========================================================= */
 
 @media(max-width:900px){
@@ -1815,9 +1681,16 @@ footer{
 
   .committee-poster{
     min-height:260px;
+
+    object-fit:contain;
   }
 
 }
+
+
+/* =========================================================
+   COMMITTEE MOBILE
+========================================================= */
 
 @media(max-width:520px){
 
@@ -1831,49 +1704,16 @@ footer{
     margin-bottom:25px;
   }
 
-  .committee-list-link{
-    align-items:flex-start;
-
-    padding:14px;
-
-    margin-bottom:25px;
-  }
-
-  .committee-list-arrow{
-    padding:8px 10px;
-
-    font-size:10px;
-  }
-
-  .committee-list-info{
-    gap:10px;
-  }
-
-  .committee-list-icon{
-    width:32px;
-    height:32px;
-
-    flex-basis:32px;
-
-    font-size:14px;
-  }
-
-  .committee-list-text strong{
-    font-size:14px;
-  }
-
-  .committee-list-text span{
-    font-size:10px;
-  }
-
   .committee-card{
     grid-template-columns:1fr;
   }
 
   .committee-poster{
+    width:100%;
+
     height:auto;
 
-    max-height:440px;
+    max-height:none;
 
     min-height:0;
 
@@ -1992,7 +1832,6 @@ footer{
 
   </div>
 
-
   <div class="info">
 
     <strong>
@@ -2004,7 +1843,6 @@ footer{
     </span>
 
   </div>
-
 
   <div class="info">
 
@@ -2129,59 +1967,18 @@ footer{
       </h3>
 
       <p>
-        Discover the committees at VVS-MUN 2026–27,
-        each offering a distinct setting to research
-        current issues, represent perspectives and work
+        Discover the committees at VVS-MUN 2026–27, each offering a distinct
+        setting to research current issues, represent perspectives and work
         towards informed solutions.
       </p>
 
     </div>
 
 
-    <!-- ================= COUNTRY / VACANCY LIST LINK ================= -->
-
-    <a
-      class="committee-list-link"
-      href="https://docs.google.com/spreadsheets/d/1qg8H1bJi5QEGnwncriHImzejtY8ORodKSloJRJbfgNU/edit?usp=sharing"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-
-      <div class="committee-list-info">
-
-        <div class="committee-list-icon">
-          ≡
-        </div>
-
-        <div class="committee-list-text">
-
-          <strong>
-            Country & Vacancy List
-          </strong>
-
-          <span>
-            View available countries, committee allocations
-            and current vacancies.
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="committee-list-arrow">
-        Open List →
-      </div>
-
-    </a>
-
-
-    <!-- ================= COMMITTEE GRID ================= -->
-
     <div class="committee-grid">
 
 
-      <!-- UNHRC -->
+      <!-- ================= UNHRC ================= -->
 
       <article class="committee-card">
 
@@ -2203,13 +2000,12 @@ footer{
           </h4>
 
           <p>
-            The United Nations Human Rights Council focuses
-            on protecting fundamental rights and freedoms
-            around the world. Delegates examine allegations
-            of human rights violations and discuss ways to
-            strengthen accountability. They represent country
-            positions, debate safeguards and consider how
-            security measures can respect human dignity.
+            The United Nations Human Rights Council focuses on protecting
+            fundamental rights and freedoms around the world.
+            Delegates examine allegations of human rights violations and
+            discuss ways to strengthen accountability.
+            They represent country positions, debate safeguards and consider
+            how security measures can respect human dignity.
           </p>
 
           <div class="committee-agenda">
@@ -2218,10 +2014,8 @@ footer{
               Agenda
             </strong>
 
-            Security Without Impunity:
-            Establishing Accountability for Human Rights
-            Violations Committed Under the Pretext of
-            Counter-Terrorism.
+            Security Without Impunity: Establishing Accountability for Human
+            Rights Violations Committed Under the Pretext of Counter-Terrorism.
 
           </div>
 
@@ -2230,7 +2024,7 @@ footer{
       </article>
 
 
-      <!-- UNGA -->
+      <!-- ================= UNGA ================= -->
 
       <article class="committee-card">
 
@@ -2252,14 +2046,12 @@ footer{
           </h4>
 
           <p>
-            The United Nations General Assembly brings
-            member states together to discuss international
-            issues and propose collective action. Delegates
-            present their country's position, negotiate with
-            other representatives and work on resolutions.
-            The committee encourages diplomacy, historical
-            research and cooperation on matters of global
-            importance.
+            The United Nations General Assembly brings member states together
+            to discuss international issues and propose collective action.
+            Delegates present their country's position, negotiate with other
+            representatives and work on resolutions.
+            The committee encourages diplomacy, historical research and
+            cooperation on matters of global importance.
           </p>
 
           <div class="committee-agenda">
@@ -2277,7 +2069,7 @@ footer{
       </article>
 
 
-      <!-- ECOSOC -->
+      <!-- ================= ECOSOC ================= -->
 
       <article class="committee-card">
 
@@ -2299,14 +2091,12 @@ footer{
           </h4>
 
           <p>
-            The United Nations Economic and Social Council
-            addresses economic, social and development
-            challenges through international cooperation.
-            Delegates consider how geopolitical tensions
-            affect economies, communities and essential
-            resources. Discussion centres on practical,
-            coordinated approaches to economic stability
-            and sustainable development.
+            The United Nations Economic and Social Council addresses economic,
+            social and development challenges through international cooperation.
+            Delegates consider how geopolitical tensions affect economies,
+            communities and essential resources.
+            Discussion centres on practical, coordinated approaches to
+            economic stability and sustainable development.
           </p>
 
           <div class="committee-agenda">
@@ -2315,9 +2105,8 @@ footer{
               Agenda
             </strong>
 
-            Economic impacts of current geopolitical tensions
-            in the Middle East, with special emphasis on the
-            global energy supply chain.
+            Economic impacts of current geopolitical tensions in the Middle
+            East, with special emphasis on the global energy supply chain.
 
           </div>
 
@@ -2326,7 +2115,7 @@ footer{
       </article>
 
 
-      <!-- AIPPM -->
+      <!-- ================= AIPPM ================= -->
 
       <article class="committee-card">
 
@@ -2348,14 +2137,12 @@ footer{
           </h4>
 
           <p>
-            The All India Political Parties Meet simulates
-            a forum for Indian political parties to debate
-            national policy and public concerns. Delegates
-            speak from the perspectives of political parties
-            and engage with differing viewpoints. The committee
-            focuses on parliamentary-style discussion,
-            negotiation and policy proposals for issues
-            affecting India.
+            The All India Political Parties Meet simulates a forum for Indian
+            political parties to debate national policy and public concerns.
+            Delegates speak from the perspectives of political parties and
+            engage with differing viewpoints.
+            The committee focuses on parliamentary-style discussion,
+            negotiation and policy proposals for issues affecting India.
           </p>
 
           <div class="committee-agenda">
@@ -2364,15 +2151,15 @@ footer{
               Agenda
             </strong>
 
-            Managing the National Examination Integrity
-            Crisis Following the Resignation of the Union
-            Minister of Education.
+            Managing the National Examination Integrity Crisis Following the
+            Resignation of the Union Minister of Education.
 
           </div>
 
         </div>
 
       </article>
+
 
     </div>
 
@@ -2579,24 +2366,6 @@ footer{
             </option>
 
           </select>
-
-        </div>
-
-
-        <!-- COUNTRY -->
-
-        <div class="field">
-
-          <label for="country">
-            Country Representing
-          </label>
-
-          <input
-            id="country"
-            name="country"
-            type="text"
-            placeholder="Country"
-          >
 
         </div>
 
@@ -2912,9 +2681,8 @@ footer{
     </div>
 
     <p>
-      We are always ready to support you with any doubts
-      and questions. Contact us with the methods mentioned
-      in the management desk anytime!
+      We are always ready to support you with any dobts and qustions.
+      Contact us with the methods mentioned in the management desk anytime!
     </p>
 
   </div>
@@ -3094,6 +2862,12 @@ form.addEventListener(
     error.style.display = "none";
 
 
+    /*
+    --------------------------------------------------------
+    GET VALUES
+    --------------------------------------------------------
+    */
+
     const name =
       document.getElementById("name")
         .value.trim();
@@ -3122,10 +2896,6 @@ form.addEventListener(
       document.getElementById("committee")
         .value.trim();
 
-    const country =
-      document.getElementById("country")
-        .value.trim();
-
     const participated =
       document.getElementById("participated")
         .value.trim();
@@ -3147,6 +2917,12 @@ form.addEventListener(
         .value.trim();
 
 
+    /*
+    --------------------------------------------------------
+    GET SELECTED STRENGTHS
+    --------------------------------------------------------
+    */
+
     const strengthElements =
       document.querySelectorAll(
         'input[name="strengths"]:checked'
@@ -3158,6 +2934,12 @@ form.addEventListener(
           return item.value;
         });
 
+
+    /*
+    --------------------------------------------------------
+    VALIDATION
+    --------------------------------------------------------
+    */
 
     if(
       !name ||
@@ -3185,6 +2967,12 @@ form.addEventListener(
     }
 
 
+    /*
+    --------------------------------------------------------
+    VALIDATE EMAIL
+    --------------------------------------------------------
+    */
+
     const emailPattern =
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -3201,12 +2989,24 @@ form.addEventListener(
     }
 
 
+    /*
+    --------------------------------------------------------
+    PREVENT MULTIPLE SUBMISSIONS
+    --------------------------------------------------------
+    */
+
     submitButton.disabled =
       true;
 
     submitButton.textContent =
       "SUBMITTING...";
 
+
+    /*
+    --------------------------------------------------------
+    DATA SENT TO FLASK
+    --------------------------------------------------------
+    */
 
     const data = {
 
@@ -3223,8 +3023,6 @@ form.addEventListener(
       parentPhone: parentPhone,
 
       committee: committee,
-
-      country: country,
 
       participated: participated,
 
@@ -3243,6 +3041,12 @@ form.addEventListener(
 
     try{
 
+      /*
+      --------------------------------------------------------
+      SEND TO BACKEND
+      --------------------------------------------------------
+      */
+
       const response =
         await fetch(
           BACKEND_URL,
@@ -3260,6 +3064,12 @@ form.addEventListener(
         );
 
 
+      /*
+      --------------------------------------------------------
+      READ RESPONSE
+      --------------------------------------------------------
+      */
+
       let result = {};
 
       try{
@@ -3275,6 +3085,12 @@ form.addEventListener(
 
       }
 
+
+      /*
+      --------------------------------------------------------
+      SUCCESS
+      --------------------------------------------------------
+      */
 
       if(
         response.ok &&
@@ -3292,11 +3108,9 @@ form.addEventListener(
 
         form.reset();
 
-        previousAwardsField.style.display =
-          "none";
+        previousAwardsField.style.display = "none";
 
-        previousAwards.required =
-          false;
+        previousAwards.required = false;
 
         strengthSummary.textContent =
           "No strengths selected";
@@ -3335,12 +3149,24 @@ form.addEventListener(
     }
 
 
+    /*
+    --------------------------------------------------------
+    RESTORE BUTTON
+    --------------------------------------------------------
+    */
+
     submitButton.disabled =
       false;
 
     submitButton.textContent =
       "SUBMIT REGISTRATION";
 
+
+    /*
+    --------------------------------------------------------
+    HIDE MESSAGES
+    --------------------------------------------------------
+    */
 
     setTimeout(
       function(){
@@ -3362,6 +3188,3 @@ form.addEventListener(
 
 </body>
 </html>
-```
-
-This puts the spreadsheet link in a dedicated **“Country & Vacancy List → Open List”** panel between the committee introduction and the committee images, so it no longer interferes with the image sizing/layout.

@@ -52,7 +52,57 @@ html{
   width:100%;
   max-width:100%;
 }
+/* =========================================================
+   COUNTRY LIST / VACANCY LINK
+========================================================= */
 
+.country-list-link{
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  margin-top:20px;
+
+  padding:11px 18px;
+
+  border:1px solid var(--line);
+
+  border-radius:4px;
+
+  background:#F1E5D6;
+
+  color:var(--color-1);
+
+  font-size:12px;
+
+  font-weight:800;
+
+  letter-spacing:.06em;
+
+  transition:
+    background .2s,
+    color .2s,
+    border-color .2s,
+    transform .2s;
+
+  box-shadow:
+    0 5px 15px rgba(62,8,4,.05);
+}
+
+.country-list-link:hover{
+  background:var(--color-1);
+
+  color:var(--color-5);
+
+  border-color:var(--color-1);
+
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(62,8,4,.12);
+}
 body{
   margin:0;
   width:100%;
@@ -1954,217 +2004,215 @@ footer{
 
   <!-- ================= COMMITTEE SHOWCASE ================= -->
 
-  <div class="committee-showcase">
+<div class="committee-showcase">
 
-    <div class="committee-heading">
+  <div class="committee-heading">
 
-      <div class="eyebrow">
-        Explore the Committees
-      </div>
-
-      <h3>
-        Four Committees. Four Perspectives.
-      </h3>
-
-      <p>
-        Discover the committees at VVS-MUN 2026–27, each offering a distinct
-        setting to research current issues, represent perspectives and work
-        towards informed solutions.
-      </p>
-
+    <div class="eyebrow">
+      Explore the Committees
     </div>
 
+    <h3>
+      Four Committees. Four Perspectives.
+    </h3>
 
-    <div class="committee-grid">
+    <p>
+      Discover the committees at VVS-MUN 2026–27, each offering a distinct
+      setting to research current issues, represent perspectives and work
+      towards informed solutions.
+    </p>
 
-
-      <!-- ================= UNHRC ================= -->
-
-      <article class="committee-card">
-
-        <img
-          class="committee-poster"
-          src="/committee-images/unhrc.jpeg"
-          alt="UNHRC committee poster"
-          loading="lazy"
-        >
-
-        <div class="committee-copy">
-
-          <span class="committee-tag">
-            Committee 01
-          </span>
-
-          <h4>
-            UNHRC
-          </h4>
-
-          <p>
-            The United Nations Human Rights Council focuses on protecting
-            fundamental rights and freedoms around the world.
-            Delegates examine allegations of human rights violations and
-            discuss ways to strengthen accountability.
-            They represent country positions, debate safeguards and consider
-            how security measures can respect human dignity.
-          </p>
-
-          <div class="committee-agenda">
-
-            <strong>
-              Agenda
-            </strong>
-
-            Security Without Impunity: Establishing Accountability for Human
-            Rights Violations Committed Under the Pretext of Counter-Terrorism.
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- ================= UNGA ================= -->
-
-      <article class="committee-card">
-
-        <img
-          class="committee-poster"
-          src="/committee-images/unga.jpeg"
-          alt="UNGA committee poster"
-          loading="lazy"
-        >
-
-        <div class="committee-copy">
-
-          <span class="committee-tag">
-            Committee 02
-          </span>
-
-          <h4>
-            UNGA
-          </h4>
-
-          <p>
-            The United Nations General Assembly brings member states together
-            to discuss international issues and propose collective action.
-            Delegates present their country's position, negotiate with other
-            representatives and work on resolutions.
-            The committee encourages diplomacy, historical research and
-            cooperation on matters of global importance.
-          </p>
-
-          <div class="committee-agenda">
-
-            <strong>
-              Agenda
-            </strong>
-
-            Partition Plan of Palestine.
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- ================= ECOSOC ================= -->
-
-      <article class="committee-card">
-
-        <img
-          class="committee-poster"
-          src="/committee-images/ecosoc.jpeg"
-          alt="ECOSOC committee poster"
-          loading="lazy"
-        >
-
-        <div class="committee-copy">
-
-          <span class="committee-tag">
-            Committee 03
-          </span>
-
-          <h4>
-            ECOSOC
-          </h4>
-
-          <p>
-            The United Nations Economic and Social Council addresses economic,
-            social and development challenges through international cooperation.
-            Delegates consider how geopolitical tensions affect economies,
-            communities and essential resources.
-            Discussion centres on practical, coordinated approaches to
-            economic stability and sustainable development.
-          </p>
-
-          <div class="committee-agenda">
-
-            <strong>
-              Agenda
-            </strong>
-
-            Economic impacts of current geopolitical tensions in the Middle
-            East, with special emphasis on the global energy supply chain.
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- ================= AIPPM ================= -->
-
-      <article class="committee-card">
-
-        <img
-          class="committee-poster"
-          src="/committee-images/aippm.jpeg"
-          alt="All India Political Parties Meet committee poster"
-          loading="lazy"
-        >
-
-        <div class="committee-copy">
-
-          <span class="committee-tag">
-            Committee 04
-          </span>
-
-          <h4>
-            AIPPM
-          </h4>
-
-          <p>
-            The All India Political Parties Meet simulates a forum for Indian
-            political parties to debate national policy and public concerns.
-            Delegates speak from the perspectives of political parties and
-            engage with differing viewpoints.
-            The committee focuses on parliamentary-style discussion,
-            negotiation and policy proposals for issues affecting India.
-          </p>
-
-          <div class="committee-agenda">
-
-            <strong>
-              Agenda
-            </strong>
-
-            Managing the National Examination Integrity Crisis Following the
-            Resignation of the Union Minister of Education.
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-    </div>
+    <a
+      class="country-list-link"
+      href="https://docs.google.com/spreadsheets/d/1qg8H1bJi5QEGnwncriHImzejtY8ORodKSloJRJbfgNU/edit?usp=sharing"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      View Country List & Vacancy →
+    </a>
 
   </div>
 
+
+  <div class="committee-grid">
+
+    <article class="committee-card">
+
+      <img
+        class="committee-poster"
+        src="/committee-images/unhrc.jpeg"
+        alt="UNHRC committee poster"
+        loading="lazy"
+      >
+
+      <div class="committee-copy">
+
+        <span class="committee-tag">
+          Committee 01
+        </span>
+
+        <h4>
+          UNHRC
+        </h4>
+
+        <p>
+          The United Nations Human Rights Council focuses on protecting
+          fundamental rights and freedoms around the world.
+          Delegates examine allegations of human rights violations and
+          discuss ways to strengthen accountability.
+          They represent country positions, debate safeguards and consider
+          how security measures can respect human dignity.
+        </p>
+
+        <div class="committee-agenda">
+
+          <strong>
+            Agenda
+          </strong>
+
+          Security Without Impunity: Establishing Accountability for Human
+          Rights Violations Committed Under the Pretext of Counter-Terrorism.
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <article class="committee-card">
+
+      <img
+        class="committee-poster"
+        src="/committee-images/unga.jpeg"
+        alt="UNGA committee poster"
+        loading="lazy"
+      >
+
+      <div class="committee-copy">
+
+        <span class="committee-tag">
+          Committee 02
+        </span>
+
+        <h4>
+          UNGA
+        </h4>
+
+        <p>
+          The United Nations General Assembly brings member states together
+          to discuss international issues and propose collective action.
+          Delegates present their country's position, negotiate with other
+          representatives and work on resolutions.
+          The committee encourages diplomacy, historical research and
+          cooperation on matters of global importance.
+        </p>
+
+        <div class="committee-agenda">
+
+          <strong>
+            Agenda
+          </strong>
+
+          Partition Plan of Palestine.
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <article class="committee-card">
+
+      <img
+        class="committee-poster"
+        src="/committee-images/ecosoc.jpeg"
+        alt="ECOSOC committee poster"
+        loading="lazy"
+      >
+
+      <div class="committee-copy">
+
+        <span class="committee-tag">
+          Committee 03
+        </span>
+
+        <h4>
+          ECOSOC
+        </h4>
+
+        <p>
+          The United Nations Economic and Social Council addresses economic,
+          social and development challenges through international cooperation.
+          Delegates consider how geopolitical tensions affect economies,
+          communities and essential resources.
+          Discussion centres on practical, coordinated approaches to
+          economic stability and sustainable development.
+        </p>
+
+        <div class="committee-agenda">
+
+          <strong>
+            Agenda
+          </strong>
+
+          Economic impacts of current geopolitical tensions in the Middle
+          East, with special emphasis on the global energy supply chain.
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <article class="committee-card">
+
+      <img
+        class="committee-poster"
+        src="/committee-images/aippm.jpeg"
+        alt="All India Political Parties Meet committee poster"
+        loading="lazy"
+      >
+
+      <div class="committee-copy">
+
+        <span class="committee-tag">
+          Committee 04
+        </span>
+
+        <h4>
+          AIPPM
+        </h4>
+
+        <p>
+          The All India Political Parties Meet simulates a forum for Indian
+          political parties to debate national policy and public concerns.
+          Delegates speak from the perspectives of political parties and
+          engage with differing viewpoints.
+          The committee focuses on parliamentary-style discussion,
+          negotiation and policy proposals for issues affecting India.
+        </p>
+
+        <div class="committee-agenda">
+
+          <strong>
+            Agenda
+          </strong>
+
+          Managing the National Examination Integrity Crisis Following the
+          Resignation of the Union Minister of Education.
+
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</div>
 </section>
 
 

@@ -11,7 +11,8 @@
 
   <title>VVS-MUN 2026–27 | Registration</title>
 
-<style>:root{
+<style>
+:root{
   /* =========================================================
      VVS-MUN COLOR SYSTEM
   ========================================================= */
@@ -30,8 +31,8 @@
 
   --line:#D8C8B6;
   --hero-text:#FFF9EF;
---hero-muted:#F1E3D8;
---section-text:#2A1714;
+  --hero-muted:#F1E3D8;
+  --section-text:#2A1714;
   --white:#FFFDF8;
 }
 
@@ -40,16 +41,23 @@
    RESET
 ========================================================= */
 
-*{
+*,
+*::before,
+*::after{
   box-sizing:border-box;
 }
 
 html{
   scroll-behavior:smooth;
+  width:100%;
+  max-width:100%;
 }
 
 body{
   margin:0;
+
+  width:100%;
+  max-width:100%;
 
   background:var(--paper);
 
@@ -63,6 +71,13 @@ body{
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
+
+  overflow-x:hidden;
+}
+
+img{
+  max-width:100%;
+  height:auto;
 }
 
 a{
@@ -73,9 +88,6 @@ a{
 
 /* =========================================================
    GOLD PAINT TEXTURE
-   =========================================================
-   Used on important gold elements.
-   It creates an irregular painted/brushed appearance.
 ========================================================= */
 
 .gold-painted{
@@ -571,10 +583,12 @@ h2{
   grid-template-columns:
     repeat(
       3,
-      1fr
+      minmax(0,1fr)
     );
 
   gap:18px;
+
+  width:100%;
 }
 
 .card{
@@ -585,6 +599,8 @@ h2{
   padding:30px;
 
   min-height:190px;
+
+  min-width:0;
 
   position:relative;
 
@@ -653,6 +669,8 @@ h2{
   line-height:1.65;
 
   margin:0;
+
+  overflow-wrap:break-word;
 }
 
 
@@ -748,6 +766,8 @@ h2{
   text-shadow:
     0 2px 8px rgba(0,0,0,.4);
 }
+
+
 /* =========================================================
    FORM CARD
 ========================================================= */
@@ -766,6 +786,10 @@ h2{
   box-shadow:
     0 25px 70px
     rgba(30,5,3,.30);
+
+  width:100%;
+
+  min-width:0;
 }
 
 
@@ -777,11 +801,15 @@ h2{
   display:grid;
 
   grid-template-columns:
-    1fr 1fr;
+    minmax(0,1fr) minmax(0,1fr);
 
   column-gap:18px;
 
   row-gap:16px;
+
+  width:100%;
+
+  min-width:0;
 }
 
 .field{
@@ -824,6 +852,10 @@ input,
 select,
 textarea{
   width:100%;
+
+  max-width:100%;
+
+  min-width:0;
 
   padding:11px 12px;
 
@@ -903,6 +935,10 @@ textarea:focus{
   border-radius:3px;
 
   overflow:hidden;
+
+  width:100%;
+
+  min-width:0;
 }
 
 .strength-picker summary{
@@ -957,7 +993,7 @@ textarea:focus{
   grid-template-columns:
     repeat(
       2,
-      1fr
+      minmax(0,1fr)
     );
 
   gap:7px;
@@ -991,6 +1027,8 @@ textarea:focus{
   transition:.15s;
 
   color:var(--color-1);
+
+  min-width:0;
 }
 
 .strength-options label:hover{
@@ -1138,9 +1176,11 @@ textarea:focus{
   display:grid;
 
   grid-template-columns:
-    1fr 1fr;
+    minmax(0,1fr) minmax(0,1fr);
 
   gap:20px;
+
+  width:100%;
 }
 
 .contact-card{
@@ -1153,6 +1193,8 @@ textarea:focus{
   position:relative;
 
   overflow:hidden;
+
+  min-width:0;
 }
 
 .contact-card:before{
@@ -1195,6 +1237,8 @@ textarea:focus{
   font-size:14px;
 
   margin:0;
+
+  overflow-wrap:anywhere;
 }
 
 
@@ -1262,6 +1306,8 @@ footer{
     padding:70px 22px;
   }
 
+  /* Section headings and descriptions */
+
   .section-head,
   .form-intro{
     display:block;
@@ -1269,26 +1315,85 @@ footer{
 
   .section-head p,
   .form-intro p{
-  max-width:420px;
+    max-width:420px;
 
-  color:var(--color-3);
+    color:var(--color-3);
+  }
 
-  .cards,
-  .grid,
-  .contact-box{
-    grid-template-columns:1fr;
+  /* FIX: Stack the three conference cards */
+
+  .cards{
+    display:grid;
+
+    grid-template-columns:minmax(0,1fr);
+
+    width:100%;
+
+    gap:16px;
+  }
+
+  .card{
+    width:100%;
+
+    min-width:0;
+
+    min-height:auto;
+
+    padding:26px 24px;
+  }
+
+  .card h3{
+    font-size:24px;
+
+    margin:16px 0 10px;
+  }
+
+  .card p{
+    font-size:14px;
+
+    line-height:1.7;
+
+    overflow-wrap:break-word;
+  }
+
+  /* Registration form */
+
+  .grid{
+    grid-template-columns:minmax(0,1fr);
   }
 
   .field.full{
     grid-column:auto;
   }
 
+  .form-wrap{
+    width:100%;
+
+    padding:0 18px;
+  }
+
   .form{
+    width:100%;
+
     padding:22px;
   }
 
+  /* Contact cards */
+
+  .contact-box{
+    grid-template-columns:minmax(0,1fr);
+  }
+
+  .contact-card{
+    width:100%;
+
+    min-width:0;
+  }
+
+  /* Strength selection */
+
   .strength-options{
-    grid-template-columns:1fr;
+    grid-template-columns:minmax(0,1fr);
   }
 
 }
@@ -1312,6 +1417,10 @@ footer{
     font-size:36px;
   }
 
+  .form-wrap{
+    padding:0 14px;
+  }
+
   .form{
     padding:18px;
   }
@@ -1328,7 +1437,20 @@ footer{
     width:100%;
   }
 
-}</style>
+  /* Keep cards full-width on narrow screens */
+
+  .cards{
+    grid-template-columns:minmax(0,1fr);
+
+    gap:14px;
+  }
+
+  .card{
+    padding:24px 20px;
+  }
+
+}
+</style>
 </head>
 
 <body>

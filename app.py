@@ -14,7 +14,16 @@ from google.oauth2.service_account import Credentials
 app = Flask(__name__)
 CORS(app)
 
+from flask import Flask, render_template, send_from_directory
 
+app = Flask(__name__)
+
+@app.route("/committee-images/<path:filename>")
+def committee_images(filename):
+    return send_from_directory(
+        "templates/committee-images",
+        filename
+    )
 # ---------------------------------------------------------
 # GOOGLE SHEETS CONFIGURATION
 # ---------------------------------------------------------

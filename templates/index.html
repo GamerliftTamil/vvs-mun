@@ -2098,7 +2098,7 @@ footer{
   type="submit"
   id="submitButton"
 >
-  PROCEED TO PAYMENT
+  SUBMIT REGISTRATION
 </button>
 
 
@@ -2576,19 +2576,21 @@ form.addEventListener(
       */
 
       if(
-  response.ok &&
-  result.success === true
-){
+        response.ok &&
+        result.success === true
+      ){
 
-  window.location.href =
-    "/payment?id=" +
-    encodeURIComponent(
-      result.registration_id
-    );
+        success.textContent =
+          "Registration successful! Your Registration ID is " +
+          result.registration_id +
+          ". Your details have been recorded.";
 
-  return;
+        success.style.display = "block";
+        error.style.display = "none";
 
-}
+        form.reset();
+
+      }
 
       else{
 
